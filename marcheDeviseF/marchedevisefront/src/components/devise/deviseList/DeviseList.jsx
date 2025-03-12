@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./deviseList.css"; // Import CSS file
 
 
@@ -23,6 +23,23 @@ const initialRows = [
 ];
 
 const DeviseList = () => {
+
+/*  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const movement = e.movementX;
+      setSize(size + movement);
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [size]); 
+  style={{ width: `${size}px` }}
+  */
+
+
+
   const [rows, setRows] = useState(initialRows);
 
   const [zoom, setZoom] = useState(1); // State to control zoom level
@@ -32,7 +49,7 @@ const DeviseList = () => {
   };
 
   return (
-    <div className="DeviseList">
+    <div className="DeviseList" >
       {/* Left Panel */}
       <div className="left-panel">
 

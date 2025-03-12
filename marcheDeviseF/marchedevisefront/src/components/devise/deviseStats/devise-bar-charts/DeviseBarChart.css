@@ -1,0 +1,21 @@
+/* DeviseBarChart.css */
+.deviseBarChart {
+    background-color: #f0f0f0; /* Fond gris clair */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(242, 64, 64, 0.1);
+  }
+  
+  .deviseBarChart .chart-container {
+    position: relative;
+    height: 40vh;
+  }
+  
+  .deviseBarChart .chart-container canvas {
+    border-radius: 8px;
+  }
+/*h1{
+    background-color: blanchedalmond;
+    color: brown;
+    font-size: 15px;
+  }*/

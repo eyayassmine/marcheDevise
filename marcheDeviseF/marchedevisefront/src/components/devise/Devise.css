@@ -12,16 +12,43 @@ body {
 }
 
 /* Left Panel */
-.left-panel {
+/*.left-panel {
     width: auto;
-    height: 50vh; /*nrodha 48 bch nalka win nzid splitter*/
-    background-color: #000000;
+    height: 48vh;*/ /*nrodha 48 bch nalka win nzid splitter*/
+   /* background-color: #000000;
     padding: 10px;
     color: white;
     display: flex;
     flex-direction: column;
     gap: 5px;
-}
+    overflow: hidden;
+
+}*/
+
+.left-panel {
+    background: #000000;
+    padding: 20px;
+    transition: width 0.3s ease; /* Smooth transition for resizing */
+  }
+  
+  .right-panel {
+    background: #000000;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: max-width 0.3s ease; /* Smooth transition for right panel resizing */
+  }
+
+
+/* Right Panel (Grid View) */
+/*.right-panel {
+    flex-grow: 1;
+    overflow: auto;
+    position: relative;
+    width: 48vh;*/ /*nrodha 45 bch nalka win nzid lsplitter*/
+  /*  background: #f8f9fa;
+    padding: 10px;
+}*/
 
 .filter-btn {
     background-color: #d2AC47;
@@ -47,15 +74,7 @@ body {
     justify-content: flex-start; /* Align buttons to the left */
     gap: 5px;   
 }
-/* Right Panel (Grid View) */
-.right-panel {
-    flex-grow: 1;
-    overflow: auto;
-    position: relative;
-    width: 50vh; /*nrodha 45 bch nalka win nzid lsplitter*/
-    background: #f8f9fa;
-    padding: 10px;
-}
+
 
 /* Grid container */
 .grid-container {
@@ -101,6 +120,32 @@ tbody tr {
     overflow-y: auto; /* Enables scrolling if content overflows */
 }
 
+.workspace-splitter {
+    background-color: #b9893c;
+    width: 10px;
+    cursor: ew-resize;
+    height: 100%;
+    transition: background-color 0.2s ease;
+  }
+  
+  .workspace-splitter:hover {
+    background-color: #bbb;
+  }
+
+/*
+.workspace-splitter {
+    display: inline-block;
+    width: 8px;
+    height: 100%;
+    border: 1px solid var(--app-sup-border);
+    border-width: 0 1px;
+    opacity: 0;
+    transition: opacity;
+    transition-duration: 200ms;
+    transition-delay: 0;
+    background: #b9893c;
+    cursor: col-resize;
+}*/
 
 
 /*.devisetableHead
