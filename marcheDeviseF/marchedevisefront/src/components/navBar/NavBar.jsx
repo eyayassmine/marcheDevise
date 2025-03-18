@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useState } from "react";  // ✅ Import useState
 import "./Navbar.css";
-import BFIlogo from '../../assets/BFIlogowb.png';
+import BFIlogo from '../../assets/BFIlogowob.png';
 
 
 

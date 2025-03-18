@@ -1,3 +1,32 @@
+.home-splitter {
+    background-color: #b9893c;
+    height: 3px; /* Thin horizontal line */
+    width: 100%;
+    z-index: 10;/* Ensure it's above other elements */
+    cursor: ns-resize; /* Up-down resize cursor */
+    transition: background-color 0.2s ease;
+    overflow: hidden;
+}
+
+.top-panel {
+    background: #000000;
+    padding: 1px;
+    height: 40vh;
+    transition: width 0.3s ease; /* Smooth transition for resizing */
+    z-index: 7; /* Can be adjusted based on your layout */
+
+  }
+  
+  .bottom-panel {
+    background: #000000;
+    padding: 1px;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    transition: max-width 0.3s ease; /* Smooth transition for right panel resizing */
+    z-index: 8; /* Can be adjusted based on your layout */
+
+  }
 
 
 /*

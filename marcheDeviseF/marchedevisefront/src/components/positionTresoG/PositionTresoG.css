@@ -1,0 +1,105 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.right-panel{
+    width: 100vw;   
+    height: 100vh; /*nrodha 48 bch nalka win nzid splitter*/
+    background-color: #000000;
+    padding: 2px;
+    color: white;
+    flex-direction: column; /* Stack elements vertically */
+    display: flex;
+    gap: 5px;
+    overflow: hidden;
+}
+.small-text {
+    font-size: 16px;  /* Set the font size to 10 pixels */
+    margin: 1px;      /* Set the margin to 1 pixel */
+    padding: 1px;     /* Set the padding to 1 pixel */
+}
+
+
+.filter-btn {
+    background-color: #d2AC47;
+    color: #1B262E;
+    border: none;
+    border-radius: 3px; /* Slightly smaller border radius */
+    padding: 4px 8px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s;  
+}
+
+.filter-btn:hover {
+    background-color: #b9893c;
+}
+
+.filterbuttons
+{
+    display: flex;            /* Enable Flexbox */
+    justify-content: flex-start; /* Align buttons to the left */
+    gap: 5px;   
+}
+
+
+/* Grid container */
+.grid-container {
+    display: grid;
+    background-color: #212020;
+    grid-template-columns: repeat(4, 200px);
+    width: max-content;
+    max-width: calc(100% - 50px);
+    max-height: calc(100% - 50px); /* Prevents it from growing too much */
+    height: max-content;
+    border: 1px solid #d2AC47; /* Border around grid */
+    display: flex;
+    
+}
+.devisetablehead {
+    background-color: #282727;
+    color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* Ensures borders are combined */
+}
+
+th, td {
+    border: 1px solid #d2AC47; /* Gold border for a sleek look */
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    font-weight: bold;
+}
+
+tbody tr {
+    background-color: #1b1b1b; 
+}
+
+/* Table wrapper to control height */
+.overflow-auto {
+    max-height: 100%;
+    overflow-y: auto; /* Enables scrolling if content overflows */
+    overflow-x: auto; /* Enables scrolling if content overflows */
+
+}
+
+
+/* Scrollbars */
+.right-panel::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.right-panel::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 5px;
+}
+

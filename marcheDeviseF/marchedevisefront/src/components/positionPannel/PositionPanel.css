@@ -1,0 +1,191 @@
+/* General styling for the panel */
+.positionPanel {
+    padding: 5px;
+    height: 50vh;/*nrodha 48 bch nalka win nzidha l vertical splitter mbaad ki bch narbatha bl positions fl home*/
+    background-color: #1e1e1e;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+
+}
+
+/* Table wrapper to control height */
+.overflow-auto {
+    max-height: 100%;
+    overflow-y: auto; /* Enables scrolling if content overflows */
+}
+
+.p-tabview {
+    width: 100% !important;
+    display: flex;
+    flex-grow: 1;
+}
+
+.p-tabview-panels {
+    flex-grow: 1; /* Allow it to take full available space */
+    display: flex; /* Ensure children follow flex rules */
+    flex-direction: column; /* Stack elements properly */
+    height: 100%;
+}
+
+.p-tabview-panel {
+    flex-grow: 1; /* Let it take full space */
+    display: flex; /* Ensure proper layout */
+    width: 100%;
+    height: 100%;
+}
+
+
+/* .p-tabview-panel {
+    display: flex !important;
+    flex-direction: row;
+    height: 100%;
+    width: 100%; 
+    flex-grow: 1; 
+    overflow: visible !important;
+} */
+
+.h1
+{
+    margin: 1px;
+    padding: 1px;
+    font-size: medium;
+}
+
+.overflow-auto {
+    max-height: 100%;
+    overflow-y: auto; /* Enables scrolling if content overflows */
+}
+
+.workspace-splitter {
+    background-color: #b9893c;
+    width: 3px;
+    cursor: ew-resize;
+    height: 100%;
+    transition: background-color 0.2s ease;
+    z-index: 5;/* Ensure it's above other elements */
+    margin-right: 0px;
+    margin-left: 0px;
+
+  }
+  
+  .workspace-splitter:hover {
+    background-color: #bbb;
+  }
+
+  .card {
+    display: flex;
+    height: 100%; /* Full viewport height */
+    width: 100%; /* Full width */
+    background-color: #000000;
+    overflow: hidden;
+}
+
+
+/* .card
+{
+    display: flex;
+    height: 100vh;
+    background-color: #000000;
+    overflow: hidden;
+} */
+.left-panel {
+    background: #000000;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease; /* Smooth transition for resizing */
+    margin-bottom: 5px;
+
+  }
+  
+  .right-panel {
+    background: #000000;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    transition: max-width 0.3s ease; /* Smooth transition for right panel resizing */
+    margin-bottom: 5px;
+
+
+  }
+
+/* Buttons for switching tabs */
+.tabbedposition {
+    display: flex;
+    justify-content: flex-start; /* Align buttons to the left */
+    gap: 2px;
+}
+
+.tab-btn {
+    background-color: #d2ac47;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.tab-btn:hover {
+    background-color: #b9893c;
+}
+
+.tabbedposition {
+    display: flex;            /* Enable Flexbox */
+    justify-content: flex-start; /* Align buttons to the left */
+    gap: 5px;
+}
+
+/* PrimeReact TabView */
+.p-tabview {
+    width: 100%;
+    max-width: 600px;
+    background-color: #282c34;
+    color: white;
+    border-radius: 8px;
+}
+
+/* Remove the default bullet points (puces) from the TabView */
+.p-tabview .p-tabview-nav {
+    list-style-type: none !important;
+    padding: 0;
+    margin: 0;
+    background-color: #333;
+}
+
+/* Style the tab header items */
+.p-tabview .p-tabview-nav li {
+    padding: 10px 15px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.p-tabview .p-tabview-nav li.p-highlight {
+    background-color: #d2ac47 !important;
+    color: black;
+}
+
+/* Style the active tab panel */
+.p-tabview .p-tabview-panels {
+    padding: 2px;
+    background-color: none;
+    border-radius: 2px;
+    color: white;
+}
+#pr_id_5 {
+    background-color: transparent; /* Makes the background transparent */
+}
+
+.p-tabview-nav-container {
+    display: none;
+}
+
+
+
+

@@ -2,6 +2,8 @@ import React, { useState, useRef, useCallback } from "react";
 import "./Devise.css"; // Import CSS file
 import DeviseList from "./deviseList/DeviseList";
 import DeviseBarChart from "./deviseStats/devise-bar-charts/DeviseBarChart";
+import usePanelResizer from "../../hooks/UsePanelResizer";
+import DeviseStat from "./deviseStats/deviseStat";
 //import { Splitter, SplitterPanel } from 'primereact/splitter';
 //import { PaneDirective, PanesDirective, SplitterComponent } from '@syncfusion/ej2-react-layouts';
 
@@ -36,41 +38,45 @@ const Workspace = () => {
     setZoom(prevZoom => Math.max(prevZoom - 0.2, 0.5)); // Prevent zooming out too much
   };*/
 
-  const [leftPanelWidth, setLeftPanelWidth] = useState(window.innerWidth / 2);
-  const isResizing = useRef(false); // To track if the user is resizing
-  const startX = useRef(0); // To store the starting mouse position
+  // const [leftPanelWidth, setLeftPanelWidth] = useState(window.innerWidth / 2);
+  // const isResizing = useRef(false); // To track if the user is resizing
+  // const startX = useRef(0); // To store the starting mouse position
 
-  const onMouseMove = useCallback(
-    (e) => {
-      if (isResizing.current) {
-        // Calculate the new width of the left panel based on mouse movement
-        const newWidth = leftPanelWidth + (e.clientX - startX.current);
-        setLeftPanelWidth(Math.max(newWidth, 100)); // Prevent shrinking too much
-      }
-    },
-    [leftPanelWidth]
-  );
+  // const onMouseMove = useCallback(
+  //   (e) => {
+  //     if (isResizing.current) {
+  //       // Calculate the new width of the left panel based on mouse movement
+  //       const newWidth = leftPanelWidth + (e.clientX - startX.current);
+  //       setLeftPanelWidth(Math.max(newWidth, 100)); // Prevent shrinking too much
+  //     }
+  //   },
+  //   [leftPanelWidth]
+  // );
 
-  const onMouseUp = useCallback(() => {
-    // Remove mousemove and mouseup listeners when resizing ends
-    isResizing.current = false;
-    document.removeEventListener("mousemove", onMouseMove);
-    document.removeEventListener("mouseup", onMouseUp);
-  }, [onMouseMove]);
+  // const onMouseUp = useCallback(() => {
+  //   // Remove mousemove and mouseup listeners when resizing ends
+  //   isResizing.current = false;
+  //   document.removeEventListener("mousemove", onMouseMove);
+  //   document.removeEventListener("mouseup", onMouseUp);
+  // }, [onMouseMove]);
 
-  const onMouseDown = (e) => {
-    // Track the initial mouse position when the user starts dragging
-    isResizing.current = true;
-    startX.current = e.clientX;
+  // const onMouseDown = (e) => {
+  //   // Track the initial mouse position when the user starts dragging
+  //   isResizing.current = true;
+  //   startX.current = e.clientX;
 
-    // Add event listeners to handle mouse move and mouse up
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", onMouseUp);
-  };
-  // Calculate the width for the right panel based on the left panel width
+  //   // Add event listeners to handle mouse move and mouse up
+  //   document.addEventListener("mousemove", onMouseMove);
+  //   document.addEventListener("mouseup", onMouseUp);
+  // };
+  // // Calculate the width for the right panel based on the left panel width
+  // const rightPanelWidth = window.innerWidth - leftPanelWidth;
+
+  const { panelSize: leftPanelWidth, onMouseDown: onLeftPanelMouseDown } = usePanelResizer(window.innerWidth / 2, "horizontal");
+
+  // Calculate the right panel width based on the left panel width
   const rightPanelWidth = window.innerWidth - leftPanelWidth;
 
-  
   return (
     <div className="workspace">
 
@@ -82,7 +88,7 @@ const Workspace = () => {
       {/* Resizable Splitter */}
       <div
         className="workspace-splitter"
-        onMouseDown={onMouseDown}
+        onMouseDown={onLeftPanelMouseDown}
         style={{ cursor: "ew-resize" }}
       />
 
@@ -94,7 +100,8 @@ const Workspace = () => {
           width: `${rightPanelWidth}px`, // Dynamically adjust the width of the right panel
         }}
       >
-        <DeviseBarChart />
+        <DeviseStat />
+        {/*<DeviseBarChart />*/}
       </div>
 
       {/*<Splitter style={{ height: '100vh' }} layout="horizontal">

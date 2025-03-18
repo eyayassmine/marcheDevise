@@ -8,7 +8,7 @@
   
   .deviseBarChart .chart-container {
     position: relative;
-    height: 40vh;
+    height: 32vh;
   }
   
   .deviseBarChart .chart-container canvas {

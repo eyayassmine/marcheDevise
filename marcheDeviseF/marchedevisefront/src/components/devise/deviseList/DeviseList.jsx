@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./deviseList.css"; // Import CSS file
-
+import "./DeviseList.css"; // Import CSS file
 
 
 const columns = [
@@ -94,9 +93,8 @@ const DeviseList = () => {
             <div key={index} className="grid-item">Row {Math.floor(index / 4) + 1}, Col {(index % 4) + 1}</div>
           ))*/}
         </div>
-
-      </div>
         <button className="zoom-out" onClick={zoomOut}>Zoom Out</button>
+      </div>
       </div>
 
     </div>

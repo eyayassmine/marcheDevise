@@ -1,7 +1,8 @@
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-	width: 8px;  /* Width of the scrollbar */
+	width: 5px;  /* Width of the scrollbar */
+  height: 5px;
   }
   
   /* Track (background behind the scrollbar) */
@@ -15,7 +16,7 @@
   ::-webkit-scrollbar-thumb {
 	/*background: #BBBEFE; */ /* Your chosen color */
 	background: #DFBD69;  /* Your chosen color */
-	border-radius: 5px;   /* Rounded edges */
+	border-radius: 1px;   /* Rounded edges */
   }
   
   /* Handle when hovered */

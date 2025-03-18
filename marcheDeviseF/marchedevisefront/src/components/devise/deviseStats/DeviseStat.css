@@ -1,0 +1,103 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.deviseStat {
+    height: 48vh; /*nrodha 48 bch nalka win nzid splitter*/
+    background-color: #000000;
+    padding: 2px;
+    color: white;
+    flex-direction: column; /* Stack elements vertically */
+    display: flex;
+    gap: 5px;
+    overflow: hidden;
+
+}
+.range-preriod {
+    background-color: #d2AC47;
+    color: #1B262E;
+    border: none;
+    border-radius: 3px; /* Slightly smaller border radius */
+    padding: 4px 4px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.3s;  
+}
+
+.chart-type-choice {
+    background-color: #d2AC47;
+    color: #1B262E;
+    border: none;
+    border-radius: 3px; /* Slightly smaller border radius */
+    padding: 4px 4px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.3s;  
+}
+
+.chart-screenshot {
+    background-color: #d2AC47;
+    /*color: #1B262E;*/
+    border: none;
+    border-radius: 3px; /* Slightly smaller border radius */
+    padding: 2px 4px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s;  
+}
+
+.range-preriod:hover {
+    background-color: #b9893c;
+}
+.chart-type-choice:hover {
+    background-color: #b9893c;
+}
+
+.chart-screenshot:hover {
+    background-color: #b9893c;
+}
+
+.chart-config-buttons
+{
+    display: flex;            /* Enable Flexbox */
+    justify-content: flex-start; /* Align buttons to the left */
+    gap: 10px; 
+    padding-top: 2px;
+    padding-bottom: 8px;
+}
+
+.take-position {
+    background-color: #d2AC47;
+    color: #1B262E;
+    border: none;
+    border-radius: 3px; /* Slightly smaller border radius */
+    padding: 4px 4px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+.take-position:hover {
+    background-color: #b9893c;
+}
+.zoom-in {
+    position: relative;
+    top: 0px;
+    right: 1px;
+    background: #d2AC47;
+    color: #1B262E;
+    border: none;
+    border-radius: 3px; /* Slightly smaller border radius */
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+}
