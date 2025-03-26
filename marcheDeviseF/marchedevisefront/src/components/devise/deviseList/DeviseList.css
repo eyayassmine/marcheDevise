@@ -6,16 +6,17 @@ body {
 
 /* Left Panel */
 .left-panel {
-    width: 100vh;
+    width: 48vw;
     height: 48vh; /*nrodha 48 bch nalka win nzid splitter*/
     background-color: #000000;
-    padding: 10px;
+    padding: 1px;
     color: white;
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    overflow: hidden;
+    gap: 3px;
+    overflow: auto;
     position: relative;
+    box-sizing: border-box; /* Adjust box model */
 }
 
 .filter-btn {
@@ -44,16 +45,22 @@ body {
 
 
 /* Grid container */
-.grid-container {
+.grid-containertl {
     display: grid;
     background-color: #212020;
-    grid-template-columns: repeat(4, 200px);
+    justify-content: center; /* Center content */
+    width: fit-content;
+    height: fit-content; /* Let it take full container height */
     width: max-content;
-    max-width: calc(100% - 50px);
-    max-height: calc(100% - 50px); /* Prevents it from growing too much */
-    height: max-content;
-    border: 1px solid #d2AC47; /* Border around grid */
-    display: flex;
+     max-width: calc(100% - 2px);
+    max-height: calc(100% - 2px);
+    /*height: max-content; */
+    border: 2px solid #d2AC47; /* Border around grid */
+    position: relative;
+    padding: 1px;
+    margin: 1px;
+    box-sizing: border-box; /* Adjust box model */
+
     
 }
 .devisetablehead {
@@ -62,7 +69,7 @@ body {
 }
 
 table {
-    width: 100%;
+    width: 45vw !important;
     border-collapse: collapse; /* Ensures borders are combined */
 }
 
@@ -80,13 +87,13 @@ tbody tr {
     background-color: #1b1b1b; 
 }
 
-/* Table wrapper to control height */
 .overflow-auto {
-    max-height: 100%;
-    overflow-y: auto; /* Enables scrolling if content overflows */
-    overflow-x: auto; /* Enables scrolling if content overflows */
-
+    max-height: 45vh; /* Set to 45vh as per requirement */
+    overflow-y: auto; /* Enables vertical scrolling */
+    overflow-x: auto; /* Hide horizontal scrolling */
+    width: 45vw; /* Full width */
 }
+  
 
 
 /* Scrollbars */
@@ -96,9 +103,11 @@ tbody tr {
 }
 
 .right-panel::-webkit-scrollbar-thumb {
-    background: #999;
+    background: #d2AC47;
     border-radius: 5px;
 }
+
+
 
 /* Zoom Button */
 .zoom-out {

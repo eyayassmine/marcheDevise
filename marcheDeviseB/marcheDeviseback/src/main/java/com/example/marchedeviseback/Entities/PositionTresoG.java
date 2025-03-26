@@ -26,4 +26,44 @@ public class PositionTresoG {
     @OneToOne
     private Devise devise;
 
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public SensG getSensG() {
+//        return sensG;
+//    }
+//
+//    public float getVolume() {
+//        return volume;
+//    }
+//
+//    public Date getGroupementValeur() {
+//        return groupementValeur;
+//    }
+//
+//    public Devise getDevise() {
+//        return devise;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+//
+//    public void setSensG(SensG sensG) {
+//        this.sensG = sensG;
+//    }
+//
+//    public void setVolume(float volume) {
+//        this.volume = volume;
+//    }
+//
+//    public void setGroupementValeur(Date groupementValeur) {
+//        this.groupementValeur = groupementValeur;
+//    }
+//
+//    public void setDevise(Devise devise) {
+//        this.devise = devise;
+//    }
+
 }

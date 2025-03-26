@@ -11,15 +11,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Operations")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:5173")
 public class OperationController {
 
 
     @Autowired
     private IOperationService operationService;
 
-    @Autowired
-    private SimpMessagingTemplate messagingTemplate; // For sending messages to WebSocket clients
+//    @Autowired
+//    private SimpMessagingTemplate messagingTemplate; // For sending messages to WebSocket clients
 
     // Endpoint to get all devises
     @GetMapping("/retrieve-all-operations")
@@ -34,7 +34,7 @@ public class OperationController {
     }
 
     // Endpoint to add a new devise
-    @PostMapping("/Operation")
+    @PostMapping("/addOperation")
     public Operation addOperation(@RequestBody Operation operation) {
         return operationService.addOperation(operation);
     }

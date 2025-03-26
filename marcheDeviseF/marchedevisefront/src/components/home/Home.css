@@ -1,17 +1,18 @@
 .home-splitter {
-    background-color: #b9893c;
-    height: 3px; /* Thin horizontal line */
+    
     width: 100%;
-    z-index: 10;/* Ensure it's above other elements */
+    height: 3px; /* Thin horizontal line */
+    background-color: #b9893c;
+    z-index: 9999; /* Very high value to stay above everything */
     cursor: ns-resize; /* Up-down resize cursor */
     transition: background-color 0.2s ease;
-    overflow: hidden;
+    
 }
 
 .top-panel {
     background: #000000;
     padding: 1px;
-    height: 40vh;
+    height: 45vh;
     transition: width 0.3s ease; /* Smooth transition for resizing */
     z-index: 7; /* Can be adjusted based on your layout */
 
@@ -27,6 +28,28 @@
     z-index: 8; /* Can be adjusted based on your layout */
 
   }
+
+/* Adjustments to the .overflow-auto class */
+.overflow-auto {
+    max-height: 100vh; /* Set to 45vh as per requirement */
+    overflow-y: auto; /* Enables vertical scrolling */
+    overflow-x: auto; /* Hide horizontal scrolling */
+    width: 100%; /* Full width */
+}
+
+
+  /* Scrollbars */
+.right-panel::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.right-panel::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 5px;
+}
+
+
 
 
 /*

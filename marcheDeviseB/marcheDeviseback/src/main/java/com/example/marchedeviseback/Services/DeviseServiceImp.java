@@ -20,6 +20,7 @@ public class DeviseServiceImp implements IDeviseService {
     @Autowired
     DeviseRepository deviser;
 
+
     @Override
     public Devise addDevise(Devise devise) {
         float lend = devise.getLend();
@@ -32,72 +33,92 @@ public class DeviseServiceImp implements IDeviseService {
 
         devise.setIntrestaverage((lend + borrow) / 2);
         devise.setIntrestspread(borrow - lend);
-
+        devise.setCreatedDate(java.time.LocalDateTime.now());
         return deviser.save(devise);
     }
 
-    private float updateValue(float a, float b) {
-        return a + b;
-    }
-
-    @Scheduled(fixedRate = 10000) // Toutes les secondes
-    @Override
-    public void simulateRates() {
-        List<Devise> devises = deviser.findAll();
-        for (Devise devise : devises) {
-
-            float a, b, c, d;
-
-            //float change = (random.nextFloat() * 0.1f) - 0.01f;
-            float[] choices = { -0.06f, -0.05f, -0.04f,
-                    -0.03f, -0.02f, -0.01f, 0.0f, 0.01f, 0.02f, 0.03f,
-                    0.04f, 0.05f, 0.06f, 0.07f, 0.08f, 0.09f, 0.1f};
-
-            Random random = new Random();
-
-            // Randomly select an index from the array
-            int randomIndex = random.nextInt(choices.length);
-
-            // Get the random number from the array based on the index
-            float randomNumber = choices[randomIndex];
-
-    // Simplify boolean assignment: assign true if conditions are met, false otherwise
-            a  = updateValue(devise.getBid(), randomNumber);
-            System.out.println("value of a is " +a);
-            b = updateValue(devise.getAsk(), randomNumber);
-            System.out.println("value of b is " +b);
-            c = updateValue(devise.getLend(), randomNumber);
-            System.out.println("value of c is " +c);
-            d = updateValue(devise.getBorrow(), randomNumber);
-            System.out.println("value of d is " +d);
-
-            if (a > 0.25 && a < 4) {
-                devise.setBid(a);
-            }
-
-            if (b > 0.25 && b < 4) {
-                devise.setAsk(b);
-            }
-
-            if (c > 0.20 && c < 6 && d > c)  {
-                devise.setLend(c);
-            }
-            if (d > 0.20 && d < 6 && d > c) {
-                devise.setBorrow(d);
-            }
-//            devise.setBid(a);
-//            devise.setAsk(b);
-//            devise.setLend(c);
-//            devise.setBorrow(d);
-
-            devise.setIntrestaverage((devise.getBorrow() + devise.getLend()) / 2);
-            devise.setIntrestspread(devise.getBorrow() - devise.getLend());
-            devise.setLastUpdated(java.time.LocalDateTime.now());
-            deviser.save(devise);
-
-        }
-
-    }
+//    private float updateValue(float a, float b) {
+//        return a + b;
+//    }
+//
+//   @Scheduled(fixedRate = 10000) // Toutes les secondes
+//    @Override
+//    public void simulateRates() {
+//        List<Devise> devises = deviser.findAll();
+//        for (Devise devise : devises) {
+//
+//            float a, b, c, d;
+//            boolean x, y;
+//
+//
+//            //float change = (random.nextFloat() * 0.1f) - 0.01f;
+//            float[] choices = { -0.06f, -0.05f, -0.04f,
+//                    -0.03f, -0.02f, -0.01f, 0.0f, 0.01f, 0.02f, 0.03f,
+//                    0.04f, 0.05f, 0.06f, 0.07f, 0.08f, 0.09f, 0.1f};
+//
+//            Random random = new Random();
+//
+//            // Randomly select an index from the array
+//            int randomIndex = random.nextInt(choices.length);
+//
+//            // Get the random number from the array based on the index
+//            float randomNumber = choices[randomIndex];
+//            Devise newDevise = new Devise();
+//
+//    // Simplify boolean assignment: assign true if conditions are met, false otherwise
+////            a  = updateValue(devise.getBid(), randomNumber);
+////            System.out.println("value of a is " +a);
+////            b = updateValue(devise.getAsk(), randomNumber);
+////            System.out.println("value of b is " +b);
+//
+//            c = updateValue(devise.getBorrow(), randomNumber);
+//            System.out.println("value of c is " +c);
+//            d = updateValue(devise.getLend(), randomNumber);
+//            System.out.println("value of d is " +d);
+//
+////            if (a > 0.25 && a < 4) {
+////                devise.setBid(a);
+////            }
+////
+////            if (b > 0.25 && b < 4) {
+////                devise.setAsk(b);
+////            }
+//
+////            if (c > 0.20 && c < 6 && d > c)  {
+////                devise.setLend(c);
+////            }
+////            if (d > 0.20 && d < 6 && d > c) {
+////                devise.setBorrow(d);
+////            }
+//            x = (c > 0.20 && c < 6) && (d > 0.20 && d < 6);
+//            y = (d>c);
+//
+////            newDevise.setBid(a);
+////            newDevise.setAsk(b);
+//            if (c > 0.20 && c < 6 && d > c)  {
+//                devise.setLend(c);
+//            }
+//            if (d > 0.20 && d < 6 && d > c) {
+//                devise.setBorrow(d);
+//            }
+//
+//            newDevise.setLend(c);
+//            newDevise.setBorrow(d);
+//            ///System.out.println("hiiiii" );
+//            newDevise.setIntrestaverage((devise.getBorrow() + devise.getLend()) / 2);
+//            newDevise.setIntrestspread(devise.getBorrow() - devise.getLend());
+//            newDevise.setCreatedDate(devise.getCreatedDate()
+//            );
+//            newDevise.setLastUpdated(java.time.LocalDateTime.now());
+//            System.out.println("hehehe");
+//            deviser.save(newDevise);
+//
+//            System.out.println("houha ");
+//
+//
+//        }
+//
+//    }
 
     @Override
     public List<Devise> retrieveAllDevises() {
@@ -118,7 +139,7 @@ public class DeviseServiceImp implements IDeviseService {
             return null;
         }
         Devise existingDevise = deviser.findById(id).orElse(null);
-        existingDevise.setLastUpdated(java.time.LocalDateTime.now());
+        //existingDevise.setLastUpdated(java.time.LocalDateTime.now());
         // Set the ID of the project to ensure it's updated properly
         existingDevise.setId(id);
 
@@ -130,4 +151,11 @@ public class DeviseServiceImp implements IDeviseService {
     public void deleteDevise(Long id) {
         deviser.deleteById(id);
     }
+
+        @Override
+    public  List<Devise> filterDevisesbyLibelle(String filterText) {
+        return deviser.findByLibelleContainingIgnoreCase(filterText);
+
+    }
+
 }

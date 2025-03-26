@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.right-panel{
+.rightb-panel{
     width: 100vw;   
     height: 100vh; /*nrodha 48 bch nalka win nzid splitter*/
     background-color: #000000;
@@ -47,13 +47,13 @@ body {
 
 
 /* Grid container */
-.grid-container {
+.grid-containerbr {
     display: grid;
     background-color: #212020;
     grid-template-columns: repeat(4, 200px);
     width: max-content;
-    max-width: calc(100% - 50px);
-    max-height: calc(100% - 50px); /* Prevents it from growing too much */
+    max-width: calc(100% - 2px);
+    max-height: calc(100% - 2px); /* Prevents it from growing too much */
     height: max-content;
     border: 1px solid #d2AC47; /* Border around grid */
     display: flex;

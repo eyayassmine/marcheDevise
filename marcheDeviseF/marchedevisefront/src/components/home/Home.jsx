@@ -5,6 +5,7 @@ import "./Home.css"
 // Import CSS file
 import Devises from "../devise/Devise";
 import PositionPannel from "../positionPannel/PositionPanel";
+import DeviseListStream from "../devise/deviseList/DeviseListStream";
 
 function Home() {
 /**      <h1>Welcome to BFITrading</h1>
@@ -17,32 +18,36 @@ function Home() {
   const bottomPanelHeight = window.innerHeight - topPanelHeight;
 
   return (
-    <div className="Home"style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
-    {/* Top Panel */}
-    <div
-      className="top-panel"
-      style={{ height: `${topPanelHeight}px` }}
-    >
-      <Devises />
-      </div>
 
-    {/* Resizable Splitter (Vertical) */}
-    <div
-      className="home-splitter"
-      onMouseDown={onTopPanelMouseDown}
-    />
 
-    {/* Bottom Panel */}
-    <div
-      className="bottom-panel"
-      style={{
-        flexGrow: 1,
-        height: `${bottomPanelHeight}px`, // Dynamically adjust the height of the bottom panel
-      }}
-    >
-      <PositionPannel />
-      </div>
-    </div>
+    <DeviseListStream />
+
+    // <div className="Home"style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+    // {/* Top Panel */}
+    // <div
+    //   className="top-panel"
+    //   style={{ height: `${topPanelHeight}px` }}
+    // >
+    //   <Devises />
+    //   </div>
+
+    // {/* Resizable Splitter (Vertical) */}
+    // <div
+    //   className="home-splitter"
+    //   onMouseDown={onTopPanelMouseDown}
+    // />
+
+    // {/* Bottom Panel */}
+    // <div
+    //   className="bottom-panel"
+    //   style={{
+    //     flexGrow: 1,
+    //     height: `${bottomPanelHeight}px`, // Dynamically adjust the height of the bottom panel
+    //   }}
+    // >
+    //   <PositionPannel />
+    //   </div>
+    // </div>
 
 
 );

@@ -45,7 +45,7 @@ const PositionTresoG = () => {
 
   return (
     <div className="position-treso-g" >
-        <div className="right-panel">
+        <div className="rightb-panel">
         <div className="small-text">Liste des positions de Trésorerie Globale</div>
       {/* right Panel */}
         <div className="filterbuttons">
@@ -56,7 +56,7 @@ const PositionTresoG = () => {
         
         <div className="inner-part">
 
-        <div className="grid-container">
+        <div className="grid-containerbr">
 
             <div className="overflow-auto max-h-64 border border-gray-300 rounded-lg">
             <table className="w-full border-collapse">

@@ -4,6 +4,7 @@ import DeviseList from "./deviseList/DeviseList";
 import DeviseBarChart from "./deviseStats/devise-bar-charts/DeviseBarChart";
 import usePanelResizer from "../../hooks/UsePanelResizer";
 import DeviseStat from "./deviseStats/deviseStat";
+import DeviseListStream from "./deviseList/DeviseListStream";
 //import { Splitter, SplitterPanel } from 'primereact/splitter';
 //import { PaneDirective, PanesDirective, SplitterComponent } from '@syncfusion/ej2-react-layouts';
 
@@ -30,6 +31,49 @@ const initialRows = [
 ];*/
 
 const Workspace = () => {
+
+  const { panelSize: leftPanelWidth, onMouseDown: onLeftPanelMouseDown } = usePanelResizer(window.innerWidth / 2, "horizontal");
+
+  // Calculate the right panel width based on the left panel width
+  const rightPanelWidth = window.innerWidth - leftPanelWidth;
+
+  return (
+    <div className="workspace">
+
+      
+      {/* Left Panel */}
+      <div className="left-panel" style={{ width: `${leftPanelWidth}px` }}>
+        {/* <DeviseListStream /> */}
+        <DeviseList />
+      </div>
+      {/* Resizable Splitter */}
+      <div
+        className="workspace-splitter"
+        onMouseDown={onLeftPanelMouseDown}
+        style={{ cursor: "ew-resize" }}
+      />
+
+      {/* Right Panel */}
+      <div
+        className="right-panel"
+        style={{
+          flexGrow: 1,
+          width: `${rightPanelWidth}px`, // Dynamically adjust the width of the right panel
+        }}
+      >
+        <DeviseStat />
+        {/*<DeviseBarChart />*/}
+      </div>
+
+
+    </div>
+  );
+};
+
+export default Workspace;
+
+
+/////splitter withou hook
  // const [rows, setRows] = useState(initialRows);
 
   //const [zoom, setZoom] = useState(1); // State to control zoom level
@@ -72,39 +116,9 @@ const Workspace = () => {
   // // Calculate the width for the right panel based on the left panel width
   // const rightPanelWidth = window.innerWidth - leftPanelWidth;
 
-  const { panelSize: leftPanelWidth, onMouseDown: onLeftPanelMouseDown } = usePanelResizer(window.innerWidth / 2, "horizontal");
 
-  // Calculate the right panel width based on the left panel width
-  const rightPanelWidth = window.innerWidth - leftPanelWidth;
 
-  return (
-    <div className="workspace">
-
-      
-      {/* Left Panel */}
-      <div className="left-panel" style={{ width: `${leftPanelWidth}px` }}>
-        <DeviseList />
-      </div>
-      {/* Resizable Splitter */}
-      <div
-        className="workspace-splitter"
-        onMouseDown={onLeftPanelMouseDown}
-        style={{ cursor: "ew-resize" }}
-      />
-
-      {/* Right Panel */}
-      <div
-        className="right-panel"
-        style={{
-          flexGrow: 1,
-          width: `${rightPanelWidth}px`, // Dynamically adjust the width of the right panel
-        }}
-      >
-        <DeviseStat />
-        {/*<DeviseBarChart />*/}
-      </div>
-
-      {/*<Splitter style={{ height: '100vh' }} layout="horizontal">
+      /*<Splitter style={{ height: '100vh' }} layout="horizontal">
         <SplitterPanel size={50}>
           <div className="left-panel">
             <DeviseList />
@@ -115,12 +129,4 @@ const Workspace = () => {
             <DeviseBarChart />
           </div>
         </SplitterPanel>
-      </Splitter>*/}
-
-
-
-    </div>
-  );
-};
-
-export default Workspace;
+      </Splitter>*/

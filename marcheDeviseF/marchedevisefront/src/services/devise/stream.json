@@ -1,0 +1,10 @@
+{
+    "id": "devise-id",
+    "libelle": "Devise Name",
+    "borrow": 5.5,
+    "lend": 3.2,
+    "intrestaverage": 4.5,
+    "intrestspread": 1.3,
+    "lastUpdated": "2025-03-19T12:00:00Z"
+  }
+  

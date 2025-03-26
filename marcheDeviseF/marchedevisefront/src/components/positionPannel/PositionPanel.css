@@ -1,7 +1,7 @@
 /* General styling for the panel */
 .positionPanel {
     padding: 5px;
-    height: 50vh;/*nrodha 48 bch nalka win nzidha l vertical splitter mbaad ki bch narbatha bl positions fl home*/
+    height: 100vh;/*nrodha 48 bch nalka win nzidha l vertical splitter mbaad ki bch narbatha bl positions fl home*/
     background-color: #1e1e1e;
     color: white;
     display: flex;

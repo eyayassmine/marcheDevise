@@ -7,8 +7,16 @@ body {
     display: flex;
     height: 45vh;/*nrodha 48 bch nalka win nzidha l vertical splitter mbaad ki bch narbatha bl positions fl home*/
     background-color: #000000;
-    overflow: hidden;
+    overflow: auto;
 
+}
+
+/* Adjustments to the .overflow-auto class */
+.overflow-auto {
+    max-height: 45vh; /* Set to 45vh as per requirement */
+    overflow-y: auto; /* Enables vertical scrolling */
+    overflow-x: auto; /* Hide horizontal scrolling */
+    width: 100%; /* Full width */
 }
 
 /* Left Panel */
@@ -27,17 +35,21 @@ body {
 
 .left-panel {
     background: #000000;
-    padding: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
     transition: width 0.3s ease; /* Smooth transition for resizing */
-    height: 48vh;
-  }
+    height: 45vh;
+    width: 45vw;
+}
+  
   
   .right-panel {
     background: #000000;
-    padding: 5%;
+    padding: 5px;
     display: flex;
     flex-direction: column;
-    height: 48vh;
+    height: 45vh;
     transition: max-width 0.3s ease; /* Smooth transition for right panel resizing */
   }
 

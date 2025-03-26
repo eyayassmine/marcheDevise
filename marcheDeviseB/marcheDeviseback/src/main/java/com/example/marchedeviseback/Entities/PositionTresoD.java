@@ -27,6 +27,44 @@ public class PositionTresoD {
     @ManyToOne(cascade = CascadeType.ALL)
     Devise devise;
 
-
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public SensD getSens() {
+//        return sens;
+//    }
+//
+//    public float getMontant() {
+//        return montant;
+//    }
+//
+//    public Date getDate() {
+//        return date;
+//    }
+//
+//    public Devise getDevise() {
+//        return devise;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+//
+//    public void setSens(SensD sens) {
+//        this.sens = sens;
+//    }
+//
+//    public void setMontant(float montant) {
+//        this.montant = montant;
+//    }
+//
+//    public void setDate(Date date) {
+//        this.date = date;
+//    }
+//
+//    public void setDevise(Devise devise) {
+//        this.devise = devise;
+//    }
 
 }

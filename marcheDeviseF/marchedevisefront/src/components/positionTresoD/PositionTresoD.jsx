@@ -17,9 +17,9 @@ const initialRows = [
   { rowId: 4, cells: [{ type: "text", text: "GPB"}, { type: "text", text: "4"}, { type: "text", text: "5480000"}, { type: "text", text: "Emprunt"}, { type: "text", text: "30/08/2024"}] },
   { rowId: 5, cells: [{ type: "text", text: "AUD"}, { type: "text", text: "5"}, { type: "text", text: "680000"}, { type: "text", text: "Pret"}, { type: "text", text: "14/10/2024"}] },
   { rowId: 6, cells: [{ type: "text", text: "USD"}, { type: "text", text: "6"}, { type: "text", text: "520000"}, { type: "text", text: "Pret"}, { type: "text", text: "12/02/2025"}] },
-  { rowId: 6, cells: [{ type: "text", text: "USD"}, { type: "text", text: "6"}, { type: "text", text: "700000"}, { type: "text", text: "Emprunt"}, { type: "text", text: "18/02/2025"}] },
-  { rowId: 6, cells: [{ type: "text", text: "USD"}, { type: "text", text: "6"}, { type: "text", text: "700000"}, { type: "text", text: "Emprunt"}, { type: "text", text: "12/03/2025"}] },
-  { rowId: 7, cells: [{ type: "text", text: "SGD"}, { type: "text", text: "7"}, { type: "text", text: "3500000"}, { type: "text", text: "Pret"}, { type: "text", text: "12/03/2025"}] }
+  { rowId: 7, cells: [{ type: "text", text: "USD"}, { type: "text", text: "7"}, { type: "text", text: "700000"}, { type: "text", text: "Emprunt"}, { type: "text", text: "18/02/2025"}] },
+  { rowId: 8, cells: [{ type: "text", text: "USD"}, { type: "text", text: "8"}, { type: "text", text: "700000"}, { type: "text", text: "Emprunt"}, { type: "text", text: "12/03/2025"}] },
+  { rowId: 9, cells: [{ type: "text", text: "SGD"}, { type: "text", text: "9"}, { type: "text", text: "3500000"}, { type: "text", text: "Pret"}, { type: "text", text: "12/03/2025"}] }
 
 ];
 
@@ -47,7 +47,7 @@ const PositionTresoD = () => {
 
   return (
     <div className="position-treso-d" >
-        <div className="left-panel">
+        <div className="leftb-panel">
                         <div className="small-text">Liste des positions de Trésorerie Détaillée</div>
                 <div className="filterbuttons">
                 <button className="filter-btn">Filter 1</button>
@@ -55,9 +55,9 @@ const PositionTresoD = () => {
                 <button className="filter-btn">Filter 3</button>
                 </div>
                         <div className="inner-part">
-                                <div className="grid-container">
+                                <div className="grid-containerbr">
                                     <div className="overflow-auto max-h-64 border border-gray-300 rounded-lg">
-                                        <table className="w-full border-collapse">
+                                        <table className="border-collapse">
                                             {/* Table Head */}
                                             <thead className="devisetablehead">
                                                 <tr>
