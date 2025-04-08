@@ -6,7 +6,7 @@ body {
 
 /* Left Panel */
 .leftb-panel {
-    width: 45vw;
+    width: 48vw;
     height: 100vh; /*nrodha 48 bch nalka win nzid splitter*/
     background-color: #000000;
     padding: 2px;
@@ -14,7 +14,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    overflow: hidden;
+    overflow: auto;
 }
 .small-text {
     font-size: 16px;  /* Set the font size to 10 pixels */
@@ -95,12 +95,32 @@ tbody tr {
 
 /* Scrollbars */
 .left-panel::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
     height: 10px;
 }
 
 .left-panel::-webkit-scrollbar-thumb {
-    background: #999;
+    background: #d2AC47;
     border-radius: 5px;
 }
+.left-panel::-webkit-scrollbar-track
+{
+    background: #BBBEFE
+}
+.grid-containertl {
+    display: grid;
+    background-color: #212020;
+    justify-content: center; /* Center content */
+    width: fit-content;
+    height: fit-content; /* Let it take full container height */
+    width: max-content;
+     max-width: calc(100% - 2px);
+    max-height: calc(100% - 2px);
+    /*height: max-content; */
+    border: 2px solid #d2AC47; /* Border around grid */
+    position: relative;
+    padding: 2px;
+    margin: 2px;
+    box-sizing: border-box; /* Adjust box model */
 
+}

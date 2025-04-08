@@ -25,7 +25,7 @@ public class PositionTresoD {
     private float montant;
     private Date date;
     @ManyToOne(cascade = CascadeType.ALL)
-    Devise devise;
+    DeviseH deviseH;
 
 //    public Long getId() {
 //        return id;

@@ -1,0 +1,349 @@
+@import "@radix-ui/colors/black-alpha.css";
+@import "@radix-ui/colors/green.css";
+@import "@radix-ui/colors/mauve.css";
+@import "@radix-ui/colors/violet.css";
+
+
+/* reset */
+button,
+fieldset,
+input {
+	all: unset;
+}
+
+.addOperation
+{
+    background-color: black;
+    
+}
+
+/*overlay*/
+.DialogOverlay {
+	background-color: rgba(0, 0, 0, 0.85) ;/*var(--black-a9)*/
+	position: fixed;
+	width: 40vw; /* Reduce width */
+	height: 50vh; /* Reduce height */
+	top: 25%; /* Center vertically */
+	left: 30%;
+	right: 30%; /* Center horizontally */
+	border-radius: 10px; /* Optional: Round corners */
+	animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 99;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.DialogForm {
+	width: 90%; /* Ensure the form takes most of the overlay width */
+	height: 90%; /* Ensure the form takes most of the overlay height */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	overflow: auto; /* Prevent overflow if content exceeds */
+	padding: 20px;
+	border-radius: 8px;
+  }
+
+/*content*/
+.DialogContent {
+	background-color: var(--gray-1);
+	border-radius: 6px;
+	box-shadow: var(--shadow-6);
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 38vw;
+	max-width: 49vw;
+	max-height: 48vh;
+	padding: 15px;
+	animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 100;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.DialogContent:focus {
+	outline: none;
+}
+/*title*/
+.DialogTitle {
+	margin: 0;
+	font-weight: 500;
+	color: var(--mauve-12);
+	font-size: 17px;
+    color:#d2AC47;
+}
+/*description*/
+.DialogDescription {
+	margin: 5px 0 5px;
+	color: var(--mauve-11);
+	font-size: 15px;
+	line-height: 1.5;
+    color:beige;
+}
+
+/*buttons*/
+.Button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 4px;
+	padding: 0 10px;
+	font-size: 15px;
+	line-height: 1;
+	font-weight: 500;
+	height: 30px;
+	user-select: none;
+}
+
+.Button-quant {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 4px;
+	padding: 0 15px;
+    color:white;
+	font-size: 15px;
+	line-height: 1;
+	font-weight: 500;
+	height: 35px;
+	user-select: none;
+}
+.Button:focus:not(:focus-visible) {
+	outline: 0;
+}
+.Button:focus-visible {
+	outline: 2px solid var(--violet-6);
+	outline-offset: 1px;
+}
+.Button.violet {
+	background-color: var(--violet-4);
+	color: var(--violet-12);
+	outline-color: var(--violet-6);
+}
+.Button.violet:hover {
+	background-color: var(--mauve-3);
+}
+.Button.green {
+	background-color: var(--green-4);
+	color: var(--green-11);
+	outline-color: var(--green-7);
+}
+.Button.green:hover {
+	background-color: var(--green-5);
+}
+
+.IconButton {
+	all: unset;
+	font-family: inherit;
+	border-radius: 100%;
+	height: 25px;
+	width: 25px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--violet-11);
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background-color: var(--gray-3);
+    color:#f0d588;
+}
+.IconButton:hover {
+	background-color: var(--violet-4);
+}
+.IconButton:focus {
+	box-shadow: 0 0 0 2px var(--violet-7);
+}
+
+.Borrow-button, .Lend-button {
+    background-color: #1B262E; /* Soft blue color */
+    /*color: #1B262E;*/
+    padding: 8px 12px;
+    border: 1px solid;
+    border-color: #cfb05b; /* Soft blue color */
+    margin: 2px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px; 
+    transition: background 0.3s;
+    }
+    .Borrow-button
+    {
+        color:#d2AC47;
+    }
+    .Lend-button
+    {
+        color:#d247c0;
+    }
+    .operation-buttons
+    {
+        display: flex;            /* Enable Flexbox */
+        justify-content: center; /* Align buttons to the left */
+        gap: 5px; 
+        }
+
+/*fildsets and labels*/
+
+.Fieldset {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	margin-bottom: 15px;
+}
+.Devisech {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	margin-bottom: 15px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+}
+.choisir-devise
+{
+    display: flex;            /* Enable Flexbox */
+    justify-content: flex-start; /* Align buttons to the left */
+    gap: 3px;   
+}
+.quantity-display, .trade-fees
+
+{
+    font-size: 15px;
+    color: white; /* Customize color */
+    font-weight:500;
+    margin-bottom: 5px;
+}
+
+.Label {
+	font-size: 15px;
+	color: var(--violet-11);
+	width: 90px;
+	text-align: right;
+}
+
+.deviselabel {
+    font-size: 15px;
+	color: white;
+	width: 90px;
+	text-align: right; 
+}
+
+.TradefeesLabel {
+    font-size: 15px;
+    color:#ddc276; /* Customize color */
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-right: 5px;
+  }
+/*date*/
+.Date-Echeance {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin-bottom: 20px;
+	justify-content: flex-start; /* Align items to the left */
+
+  }
+  
+  .DateLabel {
+
+    font-size: 15px;
+    color: white; /* Customize color */
+    font-weight:500;
+    margin-bottom: 5px;
+
+  }
+  .Amount {
+    font-size: 15px;
+    color: white; /* Customize color */
+    font-weight:500;
+    margin-bottom: 5px;
+  }
+  
+  .DateInput {
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 4px;
+    border: 1px solid #cfb05b; /* Light border */
+    color: #d2AC47;
+    background-color: var(--gray-2); /* Light background */
+    box-shadow: 0 0 0 1px #cfb05b;
+    transition: all 0.3s ease;
+  }
+  
+  .DateInput:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #f0d588 ;/*var(--violet-8)*/
+    /*box-shadow: 0 0 0 2px var(--violet-8);*/ /* Highlight on focus */
+    border-color:#cfb05b; /*var(--violet-8)*/
+  }
+  
+  .DateInput::-webkit-calendar-picker-indicator {
+    background-color: #d2AC47; /* Change calendar picker icon color */
+    border-radius: 50%;
+    padding: 5px;
+  }
+
+  
+/*inputs*/
+.Input {
+	width: 100%;
+	flex: 1;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 4px;
+	padding: 0 10px;
+	font-size: 15px;
+	line-height: 1;
+    color: #d2AC47;
+	box-shadow: 0 0 0 1px #cfb05b;
+	/* color: var(--violet-11);
+	box-shadow: 0 0 0 1px var(--violet-7); */
+	height: 35px;
+}
+.Input:focus {
+	box-shadow: 0 0 0 2px #cfb05b; /*var(--violet-8)*/
+}
+
+.quantity-input, .devise-input {
+    color: white;        /* Change text color to white */
+    border: 1px solid #cfb05b; /* Optional: Change border color to white for visibility */
+    padding: 5px;       /* Optional: Add some padding for better spacing */
+    border-radius: 4px; /* Optional: Optional rounded corners */
+	margin: 2px;
+}
+
+.Label
+{
+	color: white;        /* Change text color to white */
+
+}
+
+
+@keyframes overlayShow {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes contentShow {
+	from {
+		opacity: 0;
+		transform: translate(-50%, -48%) scale(0.96);
+	}
+	to {
+		opacity: 1;
+		transform: translate(-50%, -50%) scale(1);
+	}
+}

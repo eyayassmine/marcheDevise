@@ -14,6 +14,7 @@ public interface IOperationService {
     Operation updateOperation(Operation operation, Long id);
 
     void deleteOperation(Long id);
+    List<Operation> SortOperationDateEcheance();
 
 
 }

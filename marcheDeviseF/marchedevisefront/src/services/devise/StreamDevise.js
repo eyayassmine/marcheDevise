@@ -1,3 +1,5 @@
+
+/*
 export const fetchForexStream = (setDeviseData) => {  
     const eventSource = new EventSource('http://localhost:8084/marcheDeviseEyaYassmine/HDevises/api/forex-stream');  
   
@@ -23,7 +25,100 @@ export const fetchForexStream = (setDeviseData) => {
   
     return eventSource;
   };
+*/
+
+
+  export const fetchForexStream = (setDeviseData) => {  
+    const eventSource = new EventSource('http://localhost:8084/marcheDeviseEyaYassmine/HDevises/api/forex-stream');  
+
+    eventSource.onmessage = (event) => {
+        const newData = JSON.parse(event.data);
+        console.log('Received data:', newData);
+
+        // Get previous data from localStorage
+        const prevData = JSON.parse(localStorage.getItem('deviseData')) || [];
+
+        // Process new data and compare with previous data
+        const processedData = newData.map(newItem => {
+            const prevItem = prevData.find(item => 
+                item.slibelle === newItem.slibelle && item.ssymbol === newItem.ssymbol
+            );
+
+            return {
+                ...newItem,
+                colorBorrow: prevItem ? (newItem.sborrow > prevItem.sborrow ? '#29e61c' : newItem.sborrow < prevItem.sborrow ? 'red' : 'white') : 'white',
+                colorLend: prevItem ? (newItem.slend > prevItem.slend ? '#29e61c' : newItem.slend < prevItem.slend ? 'red' : 'white') : 'white',
+                colorAvg: prevItem ? (newItem.sintrestaverage > prevItem.sintrestaverage ? '#29e61c' : newItem.sintrestaverage < prevItem.sintrestaverage ? 'red' : 'white') : 'white',
+                colorSpread: prevItem ? (newItem.sintrestspread > prevItem.sintrestspread ? '#29e61c' : newItem.sintrestspread < prevItem.sintrestspread ? 'red' : 'white') : 'white',
+            };
+        });
+
+        // Store the updated data in localStorage for next comparison
+        localStorage.setItem('deviseData', JSON.stringify(newData));
+
+        // Update the state with the new processed data
+        setDeviseData(processedData);
+    };
+
+    eventSource.onerror = (error) => {
+        console.error('Error with EventSource:', error);
+    };
+
+    return eventSource;
+};
+
+
+  ///////to store locally and compare later
+
+
+  /*
+
+  export const fetchForexStream = (setDeviseData) => {  
+    const eventSource = new EventSource('http://localhost:8084/marcheDeviseEyaYassmine/HDevises/api/forex-stream');  
+
+    eventSource.onmessage = (event) => {
+        const newData = JSON.parse(event.data);
+        console.log('Received data:', newData);
+
+        // Get previous data from localStorage
+        const prevData = JSON.parse(localStorage.getItem('deviseData')) || [];
+
+        // Process new data with color changes
+        const processedData = newData.map(newItem => {
+            const prevItem = prevData.find(item => 
+                item.slibelle === newItem.slibelle && item.ssymbol === newItem.ssymbol
+            );
+
+            return {
+                ...newItem,
+                colorBorrow: prevItem ? (newItem.sborrow > prevItem.sborrow ? 'green' : 'red') : 'black',
+                colorLend: prevItem ? (newItem.slend > prevItem.slend ? 'green' : 'red') : 'black',
+                colorAvg: prevItem ? (newItem.sintrestaverage > prevItem.sintrestaverage ? 'green' : 'red') : 'black',
+                colorSpread: prevItem ? (newItem.sintrestspread > prevItem.sintrestspread ? 'green' : 'red') : 'black',
+            };
+        });
+
+        // Store new data in localStorage for next update
+        localStorage.setItem('deviseData', JSON.stringify(newData));
+
+        // Update the state with the new colored data
+        setDeviseData(processedData);
+    };
+
+    eventSource.onerror = (error) => {
+        console.error('Error with EventSource:', error);
+    };
+
+    return eventSource;
+};
+
+
+
+
+  */
   
+
+  ///////////////////////////////////////////
 // import { useState, useEffect } from "react";
 
 // const useForexStream = () => {

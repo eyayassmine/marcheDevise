@@ -24,14 +24,10 @@ const Navbar = () => {
                     <option value="category2">Category 2</option>
                     <option value="category3">Category 3</option>
                 </select>
-
-
                 {/* Notification Box */}
                 <div className="notification-box">
                     🔔 <span className="notification-count">3</span> {/* Example notification count */}
                 </div>
-                {/* Language Toggle Icon */}
-
                 {/* Sign Up & Sign Out Buttons */}
                 <button className="auth-button">Sign Up</button>
                 <button className="auth-button">Sign Out</button>

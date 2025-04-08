@@ -24,7 +24,7 @@ public class Operation {
     private Date date;
     private Date dateEcheance;
     @ManyToOne(cascade = CascadeType.ALL)
-    Devise devise;
+    DeviseH deviseH;
     //Devise;
 //
 //    public Long getId() {

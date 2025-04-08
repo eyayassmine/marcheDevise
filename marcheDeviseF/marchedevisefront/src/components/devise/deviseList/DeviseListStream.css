@@ -5,22 +5,22 @@ body {
 
 
 /* Left Panel */
-.operation {
-    width: 100vw;
-    height: 100vh; /*nrodha 48 bch nalka win nzid splitter*/
+.left-paneltstream {
+    width: 48vw;
+    height: 55vh; /*nrodha 48 bch nalka win nzid splitter*/
     background-color: #000000;
     padding: 2px;
     color: white;
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    overflow: hidden;
+    gap: 3px;
+    overflow: auto;
+    position: relative;
+    box-sizing: border-box; /* Adjust box model */
+    transition: width 0.3s ease; /* Smooth transition for resizing */
+
 }
-.small-text {
-    font-size: 16px;  /* Set the font size to 10 pixels */
-    margin: 1px;      /* Set the margin to 1 pixel */
-    padding: 1px;     /* Set the padding to 1 pixel */
-}
+
 
 .filter-btn {
     background-color: #d2AC47;
@@ -35,6 +35,20 @@ body {
     transition: background 0.3s;  
 }
 
+.add-operation-button {
+    background-color: #d2AC47;
+    color: #1B262E;
+    border: none;
+    border-radius: 3px; /* Slightly smaller border radius */
+    padding: 4px 8px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s;  
+}
+
+
 .filter-btn:hover {
     background-color: #b9893c;
 }
@@ -45,6 +59,9 @@ body {
     justify-content: flex-start; /* Align buttons to the left */
     gap: 5px;   
 }
+
+
+/* Grid container */
 .grid-containertl {
     display: grid;
     background-color: #212020;
@@ -62,33 +79,19 @@ body {
     box-sizing: border-box; /* Adjust box model */
 
 }
-
-/* Grid container */
-.grid-container {
-    display: grid;
-    background-color: #212020;
-    grid-template-columns: repeat(4, 200px);
-    width: max-content;
-    max-width: calc(100% - 50px);
-    max-height: calc(100% - 50px); /* Prevents it from growing too much */
-    height: max-content;
-    border: 1px solid #d2AC47; /* Border around grid */
-    display: flex;
-    
-}
 .devisetablehead {
     background-color: #282727;
     color: white;
 }
 
 table {
-    width: 100%;
+    width: 45vw !important;
     border-collapse: collapse; /* Ensures borders are combined */
 }
 
 th, td {
     border: 1px solid #d2AC47; /* Gold border for a sleek look */
-    padding: 10px;
+    padding: 5px;
     text-align: center;
 }
 
@@ -100,24 +103,55 @@ tbody tr {
     background-color: #1b1b1b; 
 }
 
-
-/* Table wrapper to control height */
 .overflow-auto {
-    max-height: 100%;
-    overflow-y: auto; /* Enables scrolling if content overflows */
-    overflow-x: auto; /* Enables scrolling if content overflows */
-
+    max-height: 45vh; /* Set to 45vh as per requirement */
+    overflow-y: auto; /* Enables vertical scrolling */
+    overflow-x: auto; /* Hide horizontal scrolling */
+    width: 45vw; /* Full width */
 }
-
+  
 
 /* Scrollbars */
-.webkit-scrollbar {
-    width: 10px;
+.left-panel::-webkit-scrollbar {
+    width: 5px;
     height: 10px;
 }
 
-.webkit-scrollbar-thumb {
-    background: #999;
+.left-panel::-webkit-scrollbar-thumb {
+    background: #d2AC47;
     border-radius: 5px;
 }
+.left-panel::-webkit-scrollbar-track
+{
+    background: #BBBEFE
+}
 
+
+
+/* Zoom Button
+.zoom-out {
+    position: absolute;*/ /* Absolute inside a relative container */
+    /*bottom: 10px; */ /* Distance from the bottom */
+    /*right: 10px; */ /* Distance from the right */
+/*    background: #d2AC47;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+} */
+
+
+/*    bottom: 10px;
+    right: 10px;*/
+
+    .green-text {
+        color: green;
+        font-weight: bold;
+      }
+      
+      .red-text {
+        color: red;
+        font-weight: bold;
+      }
+      

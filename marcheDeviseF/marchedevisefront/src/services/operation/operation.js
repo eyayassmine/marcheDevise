@@ -1,65 +1,56 @@
 import apiClient from '../apiClient';
 
-// Fetch all devises
-export const getAllDevises = async () => {
+// Fetch all operations
+export const getAllOperations = async () => {
   try {
     const response = await apiClient.get('/Operations/retrieve-all-operations');
     return response.data;
   } catch (error) {
-    console.error('Error fetching devises:', error);
+    console.error('Error fetching operations:', error);
     throw error;
   }
 };
 
-// Fetch a specific devise by ID
-export const getDeviseById = async (id) => {
+// Fetch a specific operation by ID
+export const getOperationById = async (id) => {
   try {
     const response = await apiClient.get(`/Operations/retrieve-operation/${id}`);
     return response.data;
   } catch (error) {
-    console.error(`Error fetching devise ${id}:`, error);
+    console.error(`Error fetching operation ${id}:`, error);
     throw error;
   }
 };
 
-// Add a new devise
-export const addDevise = async (devise) => {
+// Add a new operation
+export const addOperation = async (operation) => {
   try {
-    const response = await apiClient.post('/Operations/addOperation', devise);
+    const response = await apiClient.post('/Operations/addOperation', operation);
     return response.data;
   } catch (error) {
-    console.error('Error adding devise:', error);
+    console.error('Error adding operation:', error);
     throw error;
   }
 };
 
-// Update a devise by ID
-export const updateDevise = async (id, devise) => {
+// Update a operation by ID
+export const updateOperation = async (id, operation) => {
   try {
-    const response = await apiClient.put(`/Operations/modify-operation/${id}`, devise);
+    const response = await apiClient.put(`/Operations/modify-operation/${id}`, operation);
     return response.data;
   } catch (error) {
-    console.error(`Error updating devise ${id}:`, error);
+    console.error(`Error updating operation ${id}:`, error);
     throw error;
   }
 };
 
-// Delete a devise by ID
-export const deleteDevise = async (id) => {
+// Delete a operation by ID
+export const deleteOperation = async (id) => {
   try {
     await apiClient.delete(`/Operations/delete-operation/${id}`);
   } catch (error) {
-    console.error(`Error deleting devise ${id}:`, error);
+    console.error(`Error deleting operation ${id}:`, error);
     throw error;
   }
 };
 
-// // Simulate currency rates
-// export const simulateRates = async () => {
-//   try {
-//     await apiClient.post('/Devises/simulate');
-//   } catch (error) {
-//     console.error('Error simulating rates:', error);
-//     throw error;
-//   }
-// };

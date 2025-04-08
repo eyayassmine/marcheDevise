@@ -39,7 +39,7 @@ body {
     display: flex;
     flex-direction: column;
     transition: width 0.3s ease; /* Smooth transition for resizing */
-    height: 45vh;
+    height: 100vh;
     width: 45vw;
 }
   
@@ -49,7 +49,7 @@ body {
     padding: 5px;
     display: flex;
     flex-direction: column;
-    height: 45vh;
+    height: 100vh;
     transition: max-width 0.3s ease; /* Smooth transition for right panel resizing */
   }
 
@@ -129,10 +129,10 @@ tbody tr {
 
 
 /* Table wrapper to control height */
-.overflow-auto {
-    max-height: 100%;
-    overflow-y: auto; /* Enables scrolling if content overflows */
-}
+/*.overflow-auto {
+    max-height: 100%;*/
+    /*overflow-y: auto;*/ /* Enables scrolling if content overflows */
+/*}*/
 
 .workspace-splitter {
     background-color: #b9893c;
@@ -177,19 +177,35 @@ tbody tr {
     text-align: center;
 }*/
 
+.left-panel::-webkit-scrollbar-track
+{
+    background: #BBBEFE
+}
 
-
+.left-panel::-webkit-scrollbar {
+    background: #d2AC47;    
+    width: 5px;
+}
+.left-panel::-webkit-scrollbar-thumb {
+    background: #d2AC47;
+    border-radius: 2px;
+}
+.right-panel::-webkit-scrollbar-track
+{
+    background: #BBBEFE
+}
 
 
 /* Scrollbars */
 .right-panel::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
     height: 10px;
 }
 
+
 .right-panel::-webkit-scrollbar-thumb {
-    background: #999;
-    border-radius: 5px;
+    background: #d2AC47;
+    border-radius: 2px;
 }
 
 /* Zoom Button */

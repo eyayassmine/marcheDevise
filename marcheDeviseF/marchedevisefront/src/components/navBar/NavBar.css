@@ -10,6 +10,8 @@
   .left-section {
       display: flex;
       align-items: center;
+      flex: 1 1 auto;
+
   }
     .logo {
       width: 150px;  /* Adjust size */
@@ -21,7 +23,7 @@
       display: flex;
       justify-content: flex-start; /* Center horizontally */
       align-items: center; /* Center vertically */
-      height: 100px; /* Adjust height as needed */
+      /*height: 100px;*/ /* Adjust height as needed */
       padding-left: 20px; /* Add some spacing from the left */
     }
   

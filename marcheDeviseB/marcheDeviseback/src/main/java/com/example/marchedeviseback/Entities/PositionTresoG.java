@@ -24,7 +24,7 @@ public class PositionTresoG {
     private Date groupementValeur;
     //private Long groupementCorresp;
     @OneToOne
-    private Devise devise;
+    private DeviseH deviseH;
 
 //    public Long getId() {
 //        return id;

@@ -1,9 +1,28 @@
 // ForexStreamComponent.jsx
 import React, { useState, useEffect } from 'react';
 import { fetchForexStream } from '../../../services/devise/StreamDevise';  // Import the service
+import "./DeviseListStream.css";
+import DialogDemo from '../../operation/AddOperation';
+import AddOperationComponent from '../../operation/AddOperationTest';
+
+
+const columns = [
+    { columnId: "libelle", title: "Devise" },
+    { columnId: "symbol", title: "Symbol" },
+    { columnId: "borrow", title: "Interest rate of Borrow" },
+    { columnId: "lend", title: "Interest rate of Lend" },
+    { columnId: "intrestaverage", title: "Moyenne des intérêts" },
+    { columnId: "intrestspread", title: "Spread" },
+    { columnId: "lastUpdated", title: "Last Update" }
+  ];
+
 
 const ForexStreamComponent = () => {
   const [deviseData, setDeviseData] = useState([]);  // State to store unique forex data
+  const [selectedDevise, setSelectedDevise] = useState(null);  // State to store the selected devise
+  const [openDialog, setOpenDialog] = useState(true);  // State to control the dialog visibility
+
+
 
   useEffect(() => {
     // Clear the localStorage (if you're storing any data there)
@@ -11,6 +30,7 @@ const ForexStreamComponent = () => {
 
     // Initialize the stream and pass the current deviseData to the service
     const eventSource = fetchForexStream(setDeviseData, deviseData);
+    
 
     // Cleanup the event source connection when the component unmounts
     return () => {
@@ -18,10 +38,98 @@ const ForexStreamComponent = () => {
     };
   }, []); // The empty dependency array ensures this runs only on mount
 
+
+  
+  const handleRowClick = (deviseId, deviseSymbol) => {
+    setSelectedDevise({ id: deviseId, symbol: deviseSymbol }); 
+    setOpenDialog(true)
+    };
+  const handleDialogClose = () => {
+    setOpenDialog(false);  // Close the dialog
+  };
+
+
   return (
-    <div>
-      <h1>Latest Forex Stream Data</h1>
-      {deviseData.length > 0 ? (
+    
+    <div className="left-paneltstream">
+      <h3>Latest Forex Stream Data</h3>
+        <div className="filterbuttons">
+          <button className="filter-btn">Filter 1</button>
+          <button className="filter-btn">Filter 2</button>
+          <button className="filter-btn">Filter 3</button>
+          <button className="add-operation-button">Add operation</button>
+          {/* <DialogDemo /> */}
+          <AddOperationComponent 
+          selectedDevise={selectedDevise} 
+          openDialog={openDialog}
+          onClose={handleDialogClose} 
+        />
+        </div>
+        <div className="inner-part">
+            <div className="grid-containertl" >
+                <div className="overflow-auto max-h-64 border border-gray-300 rounded-lg">
+                    <table className="border-collapse">
+                        <thead className="devisetablehead">
+                        <tr>
+                            {columns.map((col) => (
+                            <th key={col.columnId} className="p-2 border border-gray-600 text-center text-sm">
+                                {col.title}
+                            </th>
+                            ))}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {deviseData.length > 0 ? (
+                            deviseData.map((forex, index) => (  
+                            <tr key={index} className="bg-gray-100"> 
+                            <td className="p-1 border border-gray-400 text-center text-sm">{forex.slibelle}</td>
+                            <td className="p-1 border border-gray-400 text-center text-sm cursor-pointer text-blue-600 underline"
+                            onClick={() => handleRowClick(forex.id, forex.ssymbol)}
+                            >{forex.ssymbol}</td>
+                            <td className="p-1 border border-gray-400 text-center text-sm" style={{ color: forex.colorBorrow }}>
+                                {forex.sborrow}
+                            </td>
+                            <td className="p-1 border border-gray-400 text-center text-sm" style={{ color: forex.colorLend }}>
+                                {forex.slend}
+                            </td>
+                            <td className="p-1 border border-gray-400 text-center text-sm" style={{ color: forex.colorAvg }}>
+                                {forex.sintrestaverage}
+                            </td>
+                            <td className="p-1 border border-gray-400 text-center text-sm" style={{ color: forex.colorSpread }}>
+                                {forex.sintrestspread}
+                            </td>
+
+                            <td className="p-1 border border-gray-400 text-center text-sm"> {forex.lastUpdated}</td>
+                            </tr>
+                            ))
+                            ) : (
+                            <p>No new data yet.</p>  // Placeholder if no data received yet
+                            )}
+
+                        </tbody>
+                    </table>
+                    
+                    {openDialog && (
+        <AddOperationComponent
+          selectedDevise={selectedDevise} // Passing selectedDevise to AddOperationComponent
+          onClose={handleDialogClose} // Close the dialog when needed
+        />
+      )}
+                </div>
+            </div>
+          
+        </div>
+
+
+
+    </div>  
+    
+  );
+};
+
+export default ForexStreamComponent;
+
+      /* {deviseData.length > 0 ? (
         deviseData.map((forex, index) => (
           <div key={index} style={{ border: "1px solid black", padding: "10px", margin: "5px" }}>
             <p><strong>Libelle:</strong> {forex.slibelle}</p>
@@ -35,12 +143,8 @@ const ForexStreamComponent = () => {
         ))
       ) : (
         <p>No new data yet.</p>  // Placeholder if no data received yet
-      )}
-    </div>
-  );
-};
+      )} */
 
-export default ForexStreamComponent;
 
 
 // import React from "react";

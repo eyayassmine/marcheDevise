@@ -44,7 +44,7 @@ const Workspace = () => {
       {/* Left Panel */}
       <div className="left-panel" style={{ width: `${leftPanelWidth}px` }}>
         {/* <DeviseListStream /> */}
-        <DeviseList />
+        <DeviseListStream />
       </div>
       {/* Resizable Splitter */}
       <div

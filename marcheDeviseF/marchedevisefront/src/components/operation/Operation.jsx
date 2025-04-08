@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { getAllOperations } from "../../services/operation/operation";
 import "./Operation.css"; // Import CSS file
 
 
@@ -41,11 +42,36 @@ const Operation = () => {
   }, [size]); 
   style={{ width: `${size}px` }}
   */
+  //const [rows, setRows] = useState(initialRows);
+
+  const [rows, setRows] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
 
-  const [rows, setRows] = useState(initialRows);
+  useEffect(() => {
+    const displayoperations = async () => {
+      try {
+        const data = await getAllOperations();
+        const formattedRows = data.map((operation) => ({
+          deviseH: operation.deviseH?.ssymbol,
+          opnum: operation.opnum,
+          type: operation.type,
+          montant: operation.montant,
+          createdDate: operation.date,
+          dateEcheance: operation.dateEcheance,
+        }));
+        setRows(formattedRows);
+      } catch (err) {
+        setError("Failed to load data.");
+      } finally {
+        setLoading(false);
+      }
+    };
 
 
+    displayoperations();
+  }, []);
 
   return (
     <div className="operation" >
@@ -57,7 +83,7 @@ const Operation = () => {
                 <button className="filter-btn">Filter 3</button>
                 </div>
                         <div className="inner-part">
-                                <div className="grid-container">
+                                <div className="grid-containertl">
                                     <div className="overflow-auto max-h-64 border border-gray-300 rounded-lg">
                                         <table className="w-full border-collapse">
                                             {/* Table Head */}
@@ -73,6 +99,18 @@ const Operation = () => {
                                             
                                             {/* Table Body */}
                                             <tbody>
+                                              {rows.map((row) => (
+                                                <tr key={row.id} className="bg-gray-100">
+                                                  <td className="p-2 border border-gray-400 text-center">{row.deviseH}</td>
+                                                  <td className="p-2 border border-gray-400 text-center">{row.opnum}</td>
+                                                  <td className="p-2 border border-gray-400 text-center">{row.type}</td>
+                                                  <td className="p-2 border border-gray-400 text-center">{row.montant}</td>
+                                                  <td className="p-2 border border-gray-400 text-center">{row.createdDate}</td>
+                                                  <td className="p-2 border border-gray-400 text-center">{row.dateEcheance}</td>
+                                                </tr>
+                                              ))}
+                                            </tbody>
+                                            {/* <tbody>
                                                 {rows.map((row, rowIndex) => (
                                                 <tr key={rowIndex} className={rowIndex % 2 === 0 ? "bg-gray-100" : "bg-white"}>
                                                     {row.cells.map((cell, colIndex) => (
@@ -82,7 +120,7 @@ const Operation = () => {
                                                     ))}
                                                 </tr>
                                                 ))}
-                                            </tbody>
+                                            </tbody> */}
                                         </table>
                                     </div>
                                 </div>

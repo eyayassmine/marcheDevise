@@ -1,12 +1,28 @@
+.blackbackground
+{
+    background-color: #000000;
+    height: 100vh;
+    width: 100vw;
+}
+
+.Home {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: relative; /* This ensures absolute positioning works for the splitter */
+}
+
 .home-splitter {
     
     width: 100%;
     height: 3px; /* Thin horizontal line */
     background-color: #b9893c;
-    z-index: 9999; /* Very high value to stay above everything */
+    z-index: 33; /* Very high value to stay above everything */
     cursor: ns-resize; /* Up-down resize cursor */
     transition: background-color 0.2s ease;
-    
+   /* top: `${topPanelHeight}px`, // Make sure it stays just below the top panel*/
+   /* position: absolute; */ /* Position the splitter over the panels */
+    /*top: 45vh;*/ /* Place the splitter between top and bottom panels */
 }
 
 .top-panel {
@@ -21,7 +37,7 @@
   .bottom-panel {
     background: #000000;
     padding: 1px;
-    height: 60vh;
+    /* height: 60vh; */
     display: flex;
     flex-direction: column;
     transition: max-width 0.3s ease; /* Smooth transition for right panel resizing */
@@ -31,9 +47,9 @@
 
 /* Adjustments to the .overflow-auto class */
 .overflow-auto {
-    max-height: 100vh; /* Set to 45vh as per requirement */
+    max-height: 100%; /* Set to 45vh as per requirement */
     overflow-y: auto; /* Enables vertical scrolling */
-    overflow-x: auto; /* Hide horizontal scrolling */
+    overflow-x: hidden; /* Hide horizontal scrolling */
     width: 100%; /* Full width */
 }
 
@@ -45,7 +61,7 @@
 }
 
 .right-panel::-webkit-scrollbar-thumb {
-    background: #999;
+    background: #b9893c;
     border-radius: 5px;
 }
 

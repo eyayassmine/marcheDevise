@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./PositionTresoD.css"; // Import CSS file
 
+import { getAllPositionTresoDs } from "../../services/PTresoD/PositionTresoD";
 
 const columns = [
   { columnId: "devise", width: 100, title: "Devise" },
@@ -41,8 +42,34 @@ const PositionTresoD = () => {
   */
 
 
-  const [rows, setRows] = useState(initialRows);
+  //const [rows, setRows] = useState(initialRows);
+  const [rows, setRows] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+
+  useEffect(() => {
+    const displayptresods = async () => {
+      try {
+        const data = await getAllPositionTresoDs();
+        const formattedRows = data.map((positionTresoD) => ({
+          deviseH: positionTresoD.deviseH?.ssymbol,
+          sens: positionTresoD.sens,
+          montant: positionTresoD.montant,
+         // sens: positionTresoD.sens,
+          createdDate: positionTresoD.date,
+        }));
+        setRows(formattedRows);
+      } catch (err) {
+        setError("Failed to load data.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+
+    displayptresods();
+  }, []);
 
 
   return (
@@ -55,7 +82,7 @@ const PositionTresoD = () => {
                 <button className="filter-btn">Filter 3</button>
                 </div>
                         <div className="inner-part">
-                                <div className="grid-containerbr">
+                                <div className="grid-containertl">
                                     <div className="overflow-auto max-h-64 border border-gray-300 rounded-lg">
                                         <table className="border-collapse">
                                             {/* Table Head */}
@@ -71,6 +98,17 @@ const PositionTresoD = () => {
                                             
                                             {/* Table Body */}
                                             <tbody>
+                                              {rows.map((row) => (
+                                                <tr key={row.id} className="bg-gray-100">
+                                                  <td className="p-2 border border-gray-400 text-center">{row.deviseH}</td>
+                                                  <td className="p-2 border border-gray-400 text-center">{row.sens}</td>
+                                                  <td className="p-2 border border-gray-400 text-center">{row.montant}</td>
+                                                  {/* <td className="p-2 border border-gray-400 text-center">{row.sens}</td> */}
+                                                  <td className="p-2 border border-gray-400 text-center">{row.createdDate}</td>
+                                                </tr>
+                                              ))}
+                                            </tbody>
+                                            {/* <tbody>
                                                 {rows.map((row, rowIndex) => (
                                                 <tr key={rowIndex} className={rowIndex % 2 === 0 ? "bg-gray-100" : "bg-white"}>
                                                     {row.cells.map((cell, colIndex) => (
@@ -80,7 +118,7 @@ const PositionTresoD = () => {
                                                     ))}
                                                 </tr>
                                                 ))}
-                                            </tbody>
+                                            </tbody> */}
                                         </table>
                                     </div>
                                 </div>

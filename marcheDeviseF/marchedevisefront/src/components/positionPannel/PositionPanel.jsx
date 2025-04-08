@@ -4,7 +4,7 @@ import "./PositionPanel.css"; // Import CSS file
 import usePanelResizer from "../../hooks/UsePanelResizer";
 import PositionTresoD from '../positionTresoD/positionTresoD';
 import PositionTresoG from '../positionTresoG/PositionTresoG';
-import Operation from '../operation/operation';
+import Operation from '../operation/Operation';
 
 const PositionPanel = () => {
     // const [rows, setRows] = useState(initialRows);

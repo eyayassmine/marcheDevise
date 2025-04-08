@@ -79,15 +79,20 @@ public class DeviseHServiceImp implements IDeviseHService{
 
             // Randomly select an index from the array
             int randomIndex = random.nextInt(choices.length);
+            int randomIndex1 = random.nextInt(choices.length);
 
             // Get the random number from the array based on the index
             float randomNumber = choices[randomIndex];
+            float randomNumber1 = choices[randomIndex1];
 
+            // Debugging logs
+            System.out.println("Random Index Borrow: " + randomIndex + " => " + choices[randomIndex]);
+            System.out.println("Random Index Lend: " + randomIndex1 + " => " + choices[randomIndex1]);
             // Simplify boolean assignment: assign true if conditions are met, false otherwise
 
             float newBorrow = updateValue(devise.getBorrow(), randomNumber);
             System.out.println("value of newBorrow  is " + newBorrow);
-            float newLend = updateValue(devise.getLend(), randomNumber);
+            float newLend = updateValue(devise.getLend(), randomNumber1);
             System.out.println("value of newLend  is " + newLend);
 
             x = (newBorrow > 0.20 && newBorrow < 20) && (newLend > 0.20 && newLend < 20);

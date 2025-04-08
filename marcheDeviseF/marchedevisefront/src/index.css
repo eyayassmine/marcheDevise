@@ -8,14 +8,14 @@
   /* Track (background behind the scrollbar) */
   ::-webkit-scrollbar-track {
 	/*background: #F0F0FF;*/ /* Light pastel background */
-	background: #ccc; /* Light pastel background */
+	background: #EDC967; /* Light pastel background */
 
   }
   
   /* Handle (the draggable part of the scrollbar) */
   ::-webkit-scrollbar-thumb {
 	/*background: #BBBEFE; */ /* Your chosen color */
-	background: #DFBD69;  /* Your chosen color */
+	background: #d2AC47;  /* Your chosen color */
 	border-radius: 1px;   /* Rounded edges */
   }
   
