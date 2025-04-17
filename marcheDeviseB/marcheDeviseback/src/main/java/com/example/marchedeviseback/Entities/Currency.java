@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 
@@ -16,20 +17,20 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Devise {
+public class Currency {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String libelle;
-
+    private String label;
     private String symbol;
-    private float bid;
-    private float ask;
-    private float borrow;
-    private float lend;
-    private float intrestaverage;
-    private float intrestspread;
-    //private LocalDateTime lastUpdated;
+    private BigDecimal bid;
+    private BigDecimal ask;
+    private BigDecimal borrow;
+    private BigDecimal lend;
+    private BigDecimal intrestaverage;
+    private BigDecimal intrestspread;
+    @Enumerated(EnumType.STRING)
+    private CalculBasis calculationBasis;
     private LocalDateTime createdDate;
 
 //

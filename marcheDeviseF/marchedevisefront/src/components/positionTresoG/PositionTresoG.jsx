@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./PositionTresoG.css"; // Import CSS file
-import { getAllPositionTresoGs } from "../../services/PTresoG/PositionTresoG";
+import { getAllPositionTresoGs } from "../../services/pTresoG/PositionTresoG";
 
 
 const columnGs = [
   { columnId: "devise", width: 100, title: "Devise" },
-  { columnId: "ticket", width: 100, title: "Ticket" },
-  { columnId: "sensG", width: 100, title: "Sens" },
   { columnId: "volume", width: 100, title: "Volume" },
-  { columnId: "groupementValeur", width: 100, title: "Groupement valeur" }
+  { columnId: "dateValeur", width: 100, title: "Date valeur" },
+  { columnId: "groupementCorrespondant", width: 100, title: "Groupement correspondant" }
+
 ];
 /*
 const initialRows = [
@@ -50,15 +50,14 @@ const PositionTresoG = () => {
     const displayptresogs = async () => {
       try {
         const data = await getAllPositionTresoGs();
-        const formattedRows = data.map((positionTresoG) => ({
-          deviseH: positionTresoG.deviseH?.ssymbol,
-          sensG: positionTresoG.sensG,
-          volume: positionTresoG.volume,
-          groupementValeur: positionTresoG.groupementValeur,
+        const formattedRows = data.map((gCashPosition) => ({
+          //deviseH: gCashPosition.deviseH?.ssymbol,
+          volume: gCashPosition.volume,
+          dateValeur: gCashPosition.valueDate,
         }));
         setRows(formattedRows);
       } catch (err) {
-        setError("Failed to load data.");
+        setError("Failed to load data.positionsTresoGs");
       } finally {
         setLoading(false);
       }
@@ -100,10 +99,8 @@ const PositionTresoG = () => {
                                             <tbody>
                                               {rows.map((row) => (
                                                 <tr key={row.rowId} className="bg-gray-100">
-                                                  <td className="p-2 border border-gray-400 text-center">{row.deviseH}</td>
-                                                  <td className="p-2 border border-gray-400 text-center">{row.sensG}</td>
                                                   <td className="p-2 border border-gray-400 text-center">{row.volume}</td>
-                                                  <td className="p-2 border border-gray-400 text-center">{row.groupementValeur}</td>
+                                                  <td className="p-2 border border-gray-400 text-center">{row.dateValeur}</td>
                                                 </tr>
                                               ))}
                                             </tbody>

@@ -11,6 +11,17 @@ export const getAllOperations = async () => {
   }
 };
 
+export const calculateMaturity = async (inputData) => {
+  try {
+    const response = await apiClient.post('/Operations/calculate-maturity', inputData);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching operations:', error);
+    throw error;
+  }
+};
+
+
 // Fetch a specific operation by ID
 export const getOperationById = async (id) => {
   try {

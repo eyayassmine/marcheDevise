@@ -6,8 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
-
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -15,17 +15,31 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PositionTresoD {
+public class DCashPosition {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(EnumType.STRING)
-    private SensD sens;
-    private float montant;
-    private Date date;
+    private OpType sense;
+    private BigDecimal amount;
+    private LocalDateTime createdDate;
+
+    @ManyToOne (cascade = CascadeType.ALL )
+    Operation operation;
+    //////jdida
     @ManyToOne(cascade = CascadeType.ALL)
-    DeviseH deviseH;
+    GCashPosition GCashPosition;
+
+    ///ekdleb l orientation
+    /*
+    @OneToOne(cascade = CascadeType.ALL)
+    Operation operation;*/
+
+    /////diagramme de classe lkdim
+    /*@OneToOne(cascade = CascadeType.ALL)
+    DeviseH deviseH;*/
+
 
 //    public Long getId() {
 //        return id;

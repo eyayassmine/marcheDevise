@@ -29,7 +29,7 @@ export const fetchForexStream = (setDeviseData) => {
 
 
   export const fetchForexStream = (setDeviseData) => {  
-    const eventSource = new EventSource('http://localhost:8084/marcheDeviseEyaYassmine/HDevises/api/forex-stream');  
+    const eventSource = new EventSource('http://localhost:8084/marcheDeviseEyaYassmine/HRates/api/forex-stream');  
 
     eventSource.onmessage = (event) => {
         const newData = JSON.parse(event.data);
@@ -41,7 +41,7 @@ export const fetchForexStream = (setDeviseData) => {
         // Process new data and compare with previous data
         const processedData = newData.map(newItem => {
             const prevItem = prevData.find(item => 
-                item.slibelle === newItem.slibelle && item.ssymbol === newItem.ssymbol
+                item.label === newItem.label && item.ssymbol === newItem.ssymbol
             );
 
             return {

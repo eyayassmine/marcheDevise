@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,24 +15,24 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DeviseH {
+public class RateH {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String slibelle;
-
+    private String label;
     private String ssymbol;
-    private float sborrow;
-    private float slend;
-    private float sintrestaverage;
-    private float sintrestspread;
-    @ManyToOne
-    @JoinColumn(name = "devise_id", nullable = false)
-    private Devise devise;  // Reference to the original Devise entity
-
+    private BigDecimal sborrow;
+    private BigDecimal slend;
+    private BigDecimal sintrestaverage;
+    private BigDecimal sintrestspread;
     private LocalDateTime lastUpdated;
+
+    @ManyToOne
+    @JoinColumn(name = "currency_id", nullable = false)
+    private Currency currency;  // Reference to the original Devise entity
+
 
 //    @ManyToOne
 //    @JoinColumn(name = "id_origin",  referencedColumnName = "id")

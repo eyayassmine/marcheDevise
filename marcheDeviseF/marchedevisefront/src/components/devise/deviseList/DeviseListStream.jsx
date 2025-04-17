@@ -7,7 +7,7 @@ import AddOperationComponent from '../../operation/AddOperationTest';
 
 
 const columns = [
-    { columnId: "libelle", title: "Devise" },
+    { columnId: "label", title: "Devise" },
     { columnId: "symbol", title: "Symbol" },
     { columnId: "borrow", title: "Interest rate of Borrow" },
     { columnId: "lend", title: "Interest rate of Lend" },
@@ -40,8 +40,8 @@ const ForexStreamComponent = () => {
 
 
   
-  const handleRowClick = (deviseId, deviseSymbol) => {
-    setSelectedDevise({ id: deviseId, symbol: deviseSymbol }); 
+  const handleRowClick = (deviseId, deviseLabel, deviseSymbol, borrowRate, lendRate) => {
+    setSelectedDevise({ id: deviseId, label: deviseLabel, symbol: deviseSymbol, borrow: borrowRate, lend: lendRate }); 
     setOpenDialog(true)
     };
   const handleDialogClose = () => {
@@ -82,9 +82,9 @@ const ForexStreamComponent = () => {
                         {deviseData.length > 0 ? (
                             deviseData.map((forex, index) => (  
                             <tr key={index} className="bg-gray-100"> 
-                            <td className="p-1 border border-gray-400 text-center text-sm">{forex.slibelle}</td>
+                            <td className="p-1 border border-gray-400 text-center text-sm">{forex.label}</td>
                             <td className="p-1 border border-gray-400 text-center text-sm cursor-pointer text-blue-600 underline"
-                            onClick={() => handleRowClick(forex.id, forex.ssymbol)}
+                            onClick={() => handleRowClick(forex.id, forex.label, forex.ssymbol, forex.sborrow, forex.slend)}
                             >{forex.ssymbol}</td>
                             <td className="p-1 border border-gray-400 text-center text-sm" style={{ color: forex.colorBorrow }}>
                                 {forex.sborrow}
@@ -109,12 +109,12 @@ const ForexStreamComponent = () => {
                         </tbody>
                     </table>
                     
-                    {openDialog && (
+      {/* {openDialog && (
         <AddOperationComponent
           selectedDevise={selectedDevise} // Passing selectedDevise to AddOperationComponent
           onClose={handleDialogClose} // Close the dialog when needed
         />
-      )}
+      )} */}
                 </div>
             </div>
           

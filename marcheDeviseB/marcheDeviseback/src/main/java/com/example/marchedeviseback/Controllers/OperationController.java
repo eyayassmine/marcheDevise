@@ -1,12 +1,14 @@
 package com.example.marchedeviseback.Controllers;
 
 
+import com.example.marchedeviseback.DTOs.MaturityCalculationInput;
+import com.example.marchedeviseback.DTOs.MaturityCalculationResult;
 import com.example.marchedeviseback.Entities.Operation;
 import com.example.marchedeviseback.Services.IOperationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -27,13 +29,26 @@ public class OperationController {
         return operationService.retrieveAllOperations();
     }
 
+    @PostMapping("/calculate-maturity")
+    public MaturityCalculationResult calculateMaturity(@RequestBody MaturityCalculationInput input) {
+        // Calculate maturity details based on the provided inputs
+        return operationService.calculateMaturityDetails(input);
+    }
+
+   /* @PostMapping("/calculate-maturity")
+    public MaturityCalculationResult calculateMaturity(@RequestBody Operation operation) {
+        return operationService.calculateMaturityDetails(operation);
+    }*/
+
+
+
     // Endpoint to get a specific devise by ID
-    @GetMapping("/retrieve-devise/{id}")
+    @GetMapping("/retrieve-operation/{id}")
     public Operation getOperation(@PathVariable Long id) {
         return operationService.retrieveOperation(id);
     }
 
-    // Endpoint to add a new devise
+//     Endpoint to add a new devise
     @PostMapping("/addOperation")
     public Operation addOperation(@RequestBody Operation operation) {
         return operationService.addOperation(operation);

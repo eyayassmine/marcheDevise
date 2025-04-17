@@ -1,40 +1,64 @@
 package com.example.marchedeviseback.Services;
 
-import com.example.marchedeviseback.Entities.Devise;
-import com.example.marchedeviseback.Repositories.DeviseRepository;
+import com.example.marchedeviseback.Entities.Currency;
+import com.example.marchedeviseback.Repositories.CurrencyRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.List;
-import java.util.Random;
 
 
 @Service
 @Transactional
 @Slf4j
-public class DeviseServiceImp implements IDeviseService {
+public class CurrencyServiceImp implements ICurrencyService {
 
     @Autowired
-    DeviseRepository deviser;
+    CurrencyRepository currencyr;
 
 
     @Override
-    public Devise addDevise(Devise devise) {
-        float lend = devise.getLend();
-        float borrow = devise.getBorrow();
+    public Currency addCurrency(Currency currency) {
+
+        BigDecimal lend = currency.getLend();     // BigDecimal
+        BigDecimal borrow = currency.getBorrow(); // BigDecimal
+
+        // Ensure borrow is always greater than lend
+        if (borrow.compareTo(lend) <= 0) {
+            throw new IllegalArgumentException("Lend must be less than Borrow.");
+        }
+
+        // (lend + borrow) / 2
+        BigDecimal intrestAverage = lend.add(borrow).divide(BigDecimal.valueOf(2), MathContext.DECIMAL128);
+
+        // (borrow - lend)
+        BigDecimal intrestSpread = borrow.subtract(lend);
+
+        currency.setIntrestaverage(intrestAverage);
+        currency.setIntrestspread(intrestSpread);
+        currency.setCreatedDate(java.time.LocalDateTime.now());
+
+        return currencyr.save(currency);
+
+
+
+        ////////////kenou float ama radihom bigdecimal
+        /*float lend = currency.getLend();
+        float borrow = currency.getBorrow();
 
         // Ensure borrow is always less than lend
         if (borrow <= lend) {
             throw new IllegalArgumentException("Lend must be less than Borrow.");
         }
 
-        devise.setIntrestaverage((lend + borrow) / 2);
-        devise.setIntrestspread(borrow - lend);
-        devise.setCreatedDate(java.time.LocalDateTime.now());
-        return deviser.save(devise);
+        currency.setIntrestaverage((lend + borrow) / 2);
+        currency.setIntrestspread(borrow - lend);
+        currency.setCreatedDate(java.time.LocalDateTime.now());
+        return currencyr.save(currency);*/
     }
 
 //    private float updateValue(float a, float b) {
@@ -121,40 +145,40 @@ public class DeviseServiceImp implements IDeviseService {
 //    }
 
     @Override
-    public List<Devise> retrieveAllDevises() {
-        return  (List<Devise>) deviser.findAll();
+    public List<Currency> retrieveAllCurrencies() {
+        return  (List<Currency>) currencyr.findAll();
     }
 
     @Override
-    public Devise retrieveDevise(Long id) {
-        return deviser.findById(id).orElse(null);
+    public Currency retrieveCurrency(Long id) {
+        return currencyr.findById(id).orElse(null);
     }
 
     @Override
-    public Devise updateDevise(Devise devise, Long id) {
-        if ((!deviser.existsById(id)) ) {
+    public Currency updateCurrency(Currency currency, Long id) {
+        if ((!currencyr.existsById(id)) ) {
             // If the project doesn't exist, you can handle the situation according to your requirements.
             // For example, you can throw an exception or return null.
             // Here, we are just returning null for simplicity.
             return null;
         }
-        Devise existingDevise = deviser.findById(id).orElse(null);
-        //existingDevise.setLastUpdated(java.time.LocalDateTime.now());
+        Currency existingCurrency = currencyr.findById(id).orElse(null);
+        //existingcurrency.setLastUpdated(java.time.LocalDateTime.now());
         // Set the ID of the project to ensure it's updated properly
-        existingDevise.setId(id);
+        existingCurrency.setId(id);
 
         // Save the updated project
-        return deviser.save(existingDevise);
+        return currencyr.save(existingCurrency);
     }
 
     @Override
-    public void deleteDevise(Long id) {
-        deviser.deleteById(id);
+    public void deleteCurrency(Long id) {
+        currencyr.deleteById(id);
     }
 
         @Override
-    public  List<Devise> filterDevisesbyLibelle(String filterText) {
-        return deviser.findByLibelleContainingIgnoreCase(filterText);
+    public  List<Currency> filterCurrenciesbyLabel(String filterText) {
+        return currencyr.findByLabelContainingIgnoreCase(filterText);
 
     }
 

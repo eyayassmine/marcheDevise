@@ -1,19 +1,16 @@
 package com.example.marchedeviseback.Repositories;
 
-import com.example.marchedeviseback.Entities.Devise;
-import com.example.marchedeviseback.Entities.DeviseH;
+import com.example.marchedeviseback.Entities.RateH;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
-public interface DeviseHRepository extends JpaRepository<DeviseH, Long> {
+public interface RateHRepository extends JpaRepository<RateH, Long> {
 
-    DeviseH findTopByOrderByLastUpdatedDesc();
+    RateH findTopByOrderByLastUpdatedDesc();
 
-        List<DeviseH> findByLastUpdatedAfter(LocalDateTime lastUpdated);
+        List<RateH> findByLastUpdatedAfter(LocalDateTime lastUpdated);
 
 //    Optional<DeviseH> findBySsymbol(String ssymbol);  // Add this method
 

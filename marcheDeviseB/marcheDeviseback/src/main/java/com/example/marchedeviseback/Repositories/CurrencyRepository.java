@@ -1,17 +1,16 @@
 package com.example.marchedeviseback.Repositories;
 
-import com.example.marchedeviseback.Entities.Devise;
+import com.example.marchedeviseback.Entities.Currency;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface DeviseRepository extends JpaRepository<Devise, Long> {
+public interface CurrencyRepository extends JpaRepository<Currency, Long> {
 
-    Devise findByLibelle(String libelle);
+    Currency findByLabel(String label);
 
 //    @Transactional
 //    @Modifying
@@ -29,11 +28,11 @@ public interface DeviseRepository extends JpaRepository<Devise, Long> {
 //                       String description, Long courseId);
 //
 
-    @Query("SELECT d FROM Devise d ORDER BY d.borrow ASC")
-    List<Devise> findAllByBorrowAsc();
+    @Query("SELECT d FROM Currency d ORDER BY d.borrow ASC")
+    List<Currency> findAllByBorrowAsc();
 
-    @Query("SELECT d FROM Devise d ORDER BY d.lend ASC")
-    List<Devise> findAllByOrderByLendAsc();
+    @Query("SELECT d FROM Currency d ORDER BY d.lend ASC")
+    List<Currency> findAllByOrderByLendAsc();
 
 //    @Query("SELECT c FROM Devise c WHERE (:status IS NULL OR c.status = :status)")
 //    List<Devise> findDevisesByStatus(@Param("status") String status);
@@ -41,7 +40,7 @@ public interface DeviseRepository extends JpaRepository<Devise, Long> {
 //    @Query("SELECT c FROM Devise c WHERE (:status IS NULL OR c.deviseCategory = :deviseCategory)")
 //    List<Devise> findDevisesByDeviseCategory(@Param("deviseCategory") String deviseCategory);
 
-    List<Devise> findByLibelleContainingIgnoreCase(String libelle);
+    List<Currency> findByLabelContainingIgnoreCase(String label);
 
 
 

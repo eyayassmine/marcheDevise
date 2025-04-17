@@ -1,9 +1,9 @@
 package com.example.marchedeviseback.Controllers;
 
 
-import com.example.marchedeviseback.Entities.Devise;
+import com.example.marchedeviseback.Entities.Currency;
 //import com.example.marchedeviseback.Services.DeviseHServiceImp;
-import com.example.marchedeviseback.Services.DeviseServiceImp;
+import com.example.marchedeviseback.Services.CurrencyServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.MediaType;
 //import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -11,47 +11,45 @@ import org.springframework.web.bind.annotation.*;
 //import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 //import reactor.core.publisher.Flux;
 
-import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 @RestController
-@RequestMapping("/Devises")
+@RequestMapping("/Currencies")
 @CrossOrigin(origins = "http://localhost:5173")
-public class DeviseController {
+public class CurrencyController {
     @Autowired
-    private DeviseServiceImp deviseService;
+    private CurrencyServiceImp currencyService;
 //    @Autowired
 //    private DeviseHServiceImp deviseHService;
 
     // Endpoint to get all devises
-    @GetMapping("/retrieve-all-devises")
-    public List<Devise> getAllDevises() {
-        return deviseService.retrieveAllDevises();
+    @GetMapping("/retrieve-all-currencies")
+    public List<Currency> getAllDevises() {
+        return currencyService.retrieveAllCurrencies();
     }
 
     // Endpoint to get a specific devise by ID
-    @GetMapping("/retrieve-devise/{id}")
-    public Devise getDevise(@PathVariable Long id) {
-        return deviseService.retrieveDevise(id);
+    @GetMapping("/retrieve-currency/{id}")
+    public Currency getCurrency(@PathVariable Long id) {
+        return currencyService.retrieveCurrency(id);
     }
 
     // Endpoint to add a new devise
-    @PostMapping("/addDevise")
-    public Devise addDevise(@RequestBody Devise devise) {
-        return deviseService.addDevise(devise);
+    @PostMapping("/addCurrency")
+    public Currency addCurrency(@RequestBody Currency currency) {
+        return currencyService.addCurrency(currency);
     }
 
     // Endpoint to update a devise (add any required fields to the request body)
-    @PutMapping("/modify-devise/{id}")
-    public Devise updateDevise(@PathVariable Long id, @RequestBody Devise devise) {
-        return deviseService.updateDevise(devise, id);
+    @PutMapping("/modify-currency/{id}")
+    public Currency updateDevise(@PathVariable Long id, @RequestBody Currency currency) {
+        return currencyService.updateCurrency(currency, id);
     }
 
     // Endpoint to delete a devise by ID
-    @DeleteMapping("/delete-devise/{id}")
-    public void deleteDevise(@PathVariable Long id) {
-        deviseService.deleteDevise(id);
+    @DeleteMapping("/delete-currrency/{id}")
+    public void deleteCurrency(@PathVariable Long id) {
+        currencyService.deleteCurrency(id);
     }
 
     // Method to send updates to WebSocket clients on a topic

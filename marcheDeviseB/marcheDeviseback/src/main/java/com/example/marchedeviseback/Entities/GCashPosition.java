@@ -6,25 +6,39 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PositionTresoG {
+public class GCashPosition {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Enumerated(EnumType.STRING)
-    private SensG sensG;
-    private float volume;
-    private Date groupementValeur;
+    private BigDecimal volume;
+    private LocalDateTime valueDate;
     //private Long groupementCorresp;
+    /////nahi couplage fort w boucle infini w hala hlila
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "positionTresoG")
+//    List<PositionTresoD> positionTresoDs;
+
+    ///ekdleb l oreintation
+    /*
+    @OneToMany(cascade = CascadeType.ALL)
+    List<PositionTresoD> positionTresoD;
+    */
+
+
+    //////diagramme lkdim
+    /*
     @OneToOne
     private DeviseH deviseH;
+*/
+
 
 //    public Long getId() {
 //        return id;

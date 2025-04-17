@@ -3,10 +3,10 @@ import apiClient from '../apiClient';
 // Fetch all devises
 export const getAllDevises = async () => {
   try {
-    const response = await apiClient.get('/Devises/retrieve-all-devises');
+    const response = await apiClient.get('/Currencies/retrieve-all-currencies');
     return response.data;
   } catch (error) {
-    console.error('Error fetching devises:', error);
+    console.error('Error fetching currencies:', error);
     throw error;
   }
 };
@@ -14,10 +14,10 @@ export const getAllDevises = async () => {
 // Fetch a specific devise by ID
 export const getDeviseById = async (id) => {
   try {
-    const response = await apiClient.get(`/Devises/retrieve-devise/${id}`);
+    const response = await apiClient.get(`/Currencies/retrieve-currency/${id}`);
     return response.data;
   } catch (error) {
-    console.error(`Error fetching devise ${id}:`, error);
+    console.error(`Error fetching currency ${id}:`, error);
     throw error;
   }
 };
@@ -25,10 +25,10 @@ export const getDeviseById = async (id) => {
 // Add a new devise
 export const addDevise = async (devise) => {
   try {
-    const response = await apiClient.post('/Devises/addDevise', devise);
+    const response = await apiClient.post('/Currencies/addCurrency', devise);
     return response.data;
   } catch (error) {
-    console.error('Error adding devise:', error);
+    console.error('Error adding currency:', error);
     throw error;
   }
 };
@@ -36,10 +36,10 @@ export const addDevise = async (devise) => {
 // Update a devise by ID
 export const updateDevise = async (id, devise) => {
   try {
-    const response = await apiClient.put(`/Devises/modify-devise/${id}`, devise);
+    const response = await apiClient.put(`/Currencies/modify-currency/${id}`, devise);
     return response.data;
   } catch (error) {
-    console.error(`Error updating devise ${id}:`, error);
+    console.error(`Error updating currency ${id}:`, error);
     throw error;
   }
 };
@@ -47,9 +47,9 @@ export const updateDevise = async (id, devise) => {
 // Delete a devise by ID
 export const deleteDevise = async (id) => {
   try {
-    await apiClient.delete(`/Devises/delete-devise/${id}`);
+    await apiClient.delete(`/Currencies/delete-currency/${id}`);
   } catch (error) {
-    console.error(`Error deleting devise ${id}:`, error);
+    console.error(`Error deleting currency ${id}:`, error);
     throw error;
   }
 };

@@ -6,12 +6,15 @@ import "./Operation.css"; // Import CSS file
 const columns = [
   { columnId: "devise", width: 100, title: "Devise" },
   { columnId: "ticket", width: 100, title: "Ticket" },
+  { columnId: "type", width: 100, title: "Type" },
   { columnId: "montant", width: 100, title: "Montant" },
-  { columnId: "sens", width: 100, title: "Sens" },
-  { columnId: "date", width: 100, title: "Date" },
-  { columnId: "dateecheance", width: 100, title: "Date Echeance" }
-
-];
+  { columnId: "operationDate", width: 100, title: "Date d'operation" },
+  { columnId: "maturityDate", width: 100, title: "Date Echeance" },
+  { columnId: "intrestRate", width: 100, title: "Taux d'interets" },
+  { columnId: "maturityRate", width: 100, title: "Taux d'intérêts d'échéance" },
+  { columnId: "intrestType", width: 100, title: "Type d'intérêts" },
+  { columnId: "maturityAmout", width: 100, title: "montant d'échéance" },
+  { columnId: "givedAmount", width: 100, title: "montant donné" }  ];
 
 const initialRows = [
   { rowId: 1, cells: [{ type: "text", text: "EUR"}, { type: "text", text: "1"}, { type: "text", text: "180000"}, { type: "text", text: "Emprunt"}, { type: "text", text: "12/02/2024"}, { type: "text", text: "12/02/2025"}] },
@@ -54,12 +57,17 @@ const Operation = () => {
       try {
         const data = await getAllOperations();
         const formattedRows = data.map((operation) => ({
-          deviseH: operation.deviseH?.ssymbol,
-          opnum: operation.opnum,
+          currency: operation.currency.label,
+          id: operation.id,
           type: operation.type,
-          montant: operation.montant,
-          createdDate: operation.date,
-          dateEcheance: operation.dateEcheance,
+          amount: operation.amount,
+          createdDate: operation.operationDate,
+          maturityDate: operation.maturityDate,
+          intrestRate: operation.intrestRate,
+          maturityRate: operation.maturityRate,
+          intrestType: operation.intrestType,
+          maturityAmount: operation.maturityAmount,
+          givedAmount: operation.givedAmount,
         }));
         setRows(formattedRows);
       } catch (err) {
@@ -101,12 +109,17 @@ const Operation = () => {
                                             <tbody>
                                               {rows.map((row) => (
                                                 <tr key={row.id} className="bg-gray-100">
-                                                  <td className="p-2 border border-gray-400 text-center">{row.deviseH}</td>
-                                                  <td className="p-2 border border-gray-400 text-center">{row.opnum}</td>
+                                                  <td className="p-2 border border-gray-400 text-center">{row.currency}</td>
+                                                  <td className="p-2 border border-gray-400 text-center">{row.id}</td>
                                                   <td className="p-2 border border-gray-400 text-center">{row.type}</td>
-                                                  <td className="p-2 border border-gray-400 text-center">{row.montant}</td>
+                                                  <td className="p-2 border border-gray-400 text-center">{row.amount}</td>
                                                   <td className="p-2 border border-gray-400 text-center">{row.createdDate}</td>
-                                                  <td className="p-2 border border-gray-400 text-center">{row.dateEcheance}</td>
+                                                  <td className="p-2 border border-gray-400 text-center">{row.maturityDate}</td>
+                                                  <td className="p-2 border border-gray-400 text-center">{row.intrestRate}</td>
+                                                  <td className="p-2 border border-gray-400 text-center">{row.maturityRate}</td>
+                                                  <td className="p-2 border border-gray-400 text-center">{row.intrestType}</td>
+                                                  <td className="p-2 border border-gray-400 text-center">{row.maturityAmount}</td>
+                                                  <td className="p-2 border border-gray-400 text-center">{row.givedAmount}</td>
                                                 </tr>
                                               ))}
                                             </tbody>

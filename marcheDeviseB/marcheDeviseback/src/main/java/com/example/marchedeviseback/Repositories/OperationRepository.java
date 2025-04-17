@@ -10,7 +10,9 @@ import java.util.List;
 public interface OperationRepository extends JpaRepository<Operation, Long> {
 
 
-    @Query("SELECT o FROM Operation o ORDER BY o.dateEcheance ASC")
-    List<Operation> findByOrderByDateEcheance();
+    @Query("SELECT o FROM Operation o ORDER BY o.maturityDate ASC")
+    List<Operation> findByOrderByMaturityDate();
 
+
+    ///boolean existsByRH_Ssymbol(String ssymbol);
 }

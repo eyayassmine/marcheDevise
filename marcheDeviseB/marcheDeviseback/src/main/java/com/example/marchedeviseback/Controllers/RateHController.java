@@ -1,39 +1,36 @@
 package com.example.marchedeviseback.Controllers;
-import com.example.marchedeviseback.Entities.Devise;
-import com.example.marchedeviseback.Entities.DeviseH;
-import com.example.marchedeviseback.Repositories.DeviseHRepository;
-import com.example.marchedeviseback.Services.DeviseHServiceImp;
+import com.example.marchedeviseback.Entities.RateH;
+import com.example.marchedeviseback.Repositories.RateHRepository;
+import com.example.marchedeviseback.Services.RateHServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.io.IOException;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 
 @RestController
-@RequestMapping("/HDevises")
+@RequestMapping("/HRates")
 @CrossOrigin(origins = "http://localhost:5173")
-public class DeviseHController {
+public class RateHController {
 
     @Autowired
-    private DeviseHServiceImp deviseHService;
+    private RateHServiceImp rateHService;
     @Autowired
-    private DeviseHRepository deviseHr;
+    private RateHRepository rateHr;
 
-    @GetMapping("/retrieve-all-deviseHs")
-    public List<DeviseH> getAllDeviseHs() {
-        return deviseHService.retrieveAllDeviseHs();
+    @GetMapping("/retrieve-all-rateHs")
+    public List<RateH> getAllDeviseHs() {
+        return rateHService.retrieveAllRateHs();
     }
 
     // Endpoint to get a specific devise by ID
-    @GetMapping("/retrieve-deviseH/{id}")
-    public DeviseH getDeviseH(@PathVariable Long id) {
-        return deviseHService.retrieveDeviseH(id);
+    @GetMapping("/retrieve-rateH/{id}")
+    public RateH getDeviseH(@PathVariable Long id) {
+        return rateHService.retrieveRateH(id);
     }
 
 
@@ -47,7 +44,7 @@ public class DeviseHController {
             AtomicReference<LocalDateTime> lastUpdatedTime = new AtomicReference<>(LocalDateTime.now());  // Use AtomicReference to allow modification
 
             // Send only new or updated data
-            List<DeviseH> updatedDevises = deviseHService.getNewOrUpdatedDevises(lastUpdatedTime.get());
+            List<RateH> updatedDevises = rateHService.getNewOrUpdatedCurrencies(lastUpdatedTime.get());
             if (!updatedDevises.isEmpty()) {
                 emitter.send(updatedDevises);
             }
@@ -59,10 +56,10 @@ public class DeviseHController {
                         Thread.sleep(2000); // Simulate a delay
 
                         // Check for new or updated data
-                        List<DeviseH> newDevises = deviseHService.getNewOrUpdatedDevises(lastUpdatedTime.get());
+                        List<RateH> newRates = rateHService.getNewOrUpdatedCurrencies(lastUpdatedTime.get());
 
-                        if (!newDevises.isEmpty()) {
-                            emitter.send(newDevises);
+                        if (!newRates.isEmpty()) {
+                            emitter.send(newRates);
                             lastUpdatedTime.set(LocalDateTime.now());  // Update lastUpdatedTime to the current time
                         }
                     }

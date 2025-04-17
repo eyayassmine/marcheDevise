@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 @Entity
 @Getter
@@ -17,14 +19,49 @@ public class Operation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long opnum;
+    //private Long opnum;
     @Enumerated(EnumType.STRING)
     private OpType type;
-    private float montant;
-    private Date date;
-    private Date dateEcheance;
+    private BigDecimal amount;//BigDecimal
+    private LocalDateTime operationDate;
+    private LocalDateTime maturityDate;
+    private BigDecimal intrestRate;
+    private BigDecimal maturityRate;
+    @Enumerated(EnumType.STRING)
+    private IntrestType intrestType;
+    private BigDecimal maturityAmount;//BigDecimal
+    private BigDecimal givedAmount;
     @ManyToOne(cascade = CascadeType.ALL)
-    DeviseH deviseH;
+    Currency currency;
+
+    /*
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }*/
+
+
+
+
+    /*    @ManyToOne(cascade = CascadeType.ALL)
+    RateH rateH;*/
+
+    /////jdida ken zemen
+//    @OneToOne(cascade = CascadeType.ALL)
+//    PositionTresoD positionTresoD;
+/*
+    public RateH getRateH() {
+        return rateH;
+    }
+
+    public void setRateH(RateH rateH) {
+        this.rateH = rateH;
+    }
+
+    */
     //Devise;
 //
 //    public Long getId() {

@@ -52,12 +52,14 @@ const PositionTresoD = () => {
     const displayptresods = async () => {
       try {
         const data = await getAllPositionTresoDs();
-        const formattedRows = data.map((positionTresoD) => ({
-          deviseH: positionTresoD.deviseH?.ssymbol,
-          sens: positionTresoD.sens,
-          montant: positionTresoD.montant,
-         // sens: positionTresoD.sens,
-          createdDate: positionTresoD.date,
+        const formattedRows = data.map((dCashPosition) => ({
+          //deviseH: dCashPosition.deviseH?.ssymbol,
+          devise: dCashPosition.operation.currency.symbol,
+          ticket: dCashPosition.operation.id,
+          sens: dCashPosition.sense,
+          montant: dCashPosition.amount,
+         // sens: dCashPosition.sens,
+          createdDate: dCashPosition.createdDate,
         }));
         setRows(formattedRows);
       } catch (err) {
@@ -100,7 +102,9 @@ const PositionTresoD = () => {
                                             <tbody>
                                               {rows.map((row) => (
                                                 <tr key={row.id} className="bg-gray-100">
-                                                  <td className="p-2 border border-gray-400 text-center">{row.deviseH}</td>
+                                                  {/* <td className="p-2 border border-gray-400 text-center">{row.deviseH}</td> */}
+                                                  <td className="p-2 border border-gray-400 text-center">{row.devise}</td>
+                                                  <td className="p-2 border border-gray-400 text-center">{row.ticket}</td>
                                                   <td className="p-2 border border-gray-400 text-center">{row.sens}</td>
                                                   <td className="p-2 border border-gray-400 text-center">{row.montant}</td>
                                                   {/* <td className="p-2 border border-gray-400 text-center">{row.sens}</td> */}

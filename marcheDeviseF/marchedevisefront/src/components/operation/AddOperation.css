@@ -17,6 +17,7 @@ input {
     
 }
 
+
 /*overlay*/
 .DialogOverlay {
 	background-color: rgba(0, 0, 0, 0.85) ;/*var(--black-a9)*/
@@ -210,6 +211,13 @@ input {
     display: flex;            /* Enable Flexbox */
     justify-content: flex-start; /* Align buttons to the left */
     gap: 3px;   
+}
+.ratethings
+{
+	display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 .quantity-display, .trade-fees
 
