@@ -6,9 +6,10 @@ import { Cross2Icon } from "@radix-ui/react-icons";
 import "./AddOperation.css";
 import { addOperation } from '../../services/operation/operation'; // Import the addOperation service
 import { calculateMaturity } from "../../services/operation/operation";
+import { color } from "chart.js/helpers";
 const AddOperationComponent = ({ selectedDevise, openDialog, onClose }) => {
 
-    const { id, label, symbol, borrow, lend } = selectedDevise || {};  // Ensure selectedDevise is valid
+    const { id, label, symbol, borrow, lend, colorBorrow, colorLend } = selectedDevise || {};  // Ensure selectedDevise is valid
     const [operationType, setOperationType] = useState('BORROW'); // Default operation type
     const [amount, setAmount] = useState(100); // Default value for amount
     const [maturityDate, setMaturityDate] = useState(''); // State for maturityDate
@@ -30,6 +31,9 @@ const AddOperationComponent = ({ selectedDevise, openDialog, onClose }) => {
             console.log(symbol);
             console.log(borrow);
             console.log(lend);
+            console.log("colorBorrow ", colorBorrow);
+            console.log("colorLend ", colorLend);
+
             setCurrency(selectedDevise.label); // Automatically set the currency label
             if (operationType === 'BORROW') {
                 setIntrestRate(selectedDevise.borrow);
@@ -95,7 +99,7 @@ const AddOperationComponent = ({ selectedDevise, openDialog, onClose }) => {
                 intrestRate,
                 intrestType,
                 label,
-                maturityDate: isoDate,
+                maturityDNate: isoDate,
             });
     
             fetchCalculatedData({
@@ -158,39 +162,44 @@ const givedAmount1 = 5;
                 <Dialog.Portal>
                     <Dialog.Overlay className="DialogOverlay"/>
                     <Dialog.Content className="DialogContent">
-                        <Dialog.Title className="DialogTitle">conduct a financial transaction</Dialog.Title>
+                        <Dialog.Title className="DialogTitle">Effectuer une opération financière</Dialog.Title>
                         <Dialog.Description className="DialogDescription">
-                        Add Operation for {symbol}. Click save when you're done. 
+                        Effectuer une opération financiére sur la devise {symbol}.
                         </Dialog.Description>
 
                         <form onSubmit={handleSubmit} className="DialogForm">
+                            <div className="flex-container">
+                            <div className="flex-child form-middle">
 
                             <div className="operation-buttons">
-                                <button type="button" onClick={() => setOperationType('BORROW')} className="Borrow-button">Borrow {borrow}</button>
-                                <button type="button" onClick={() => setOperationType('LEND')} className="Lend-button">Lend {lend}</button>
+                                <button type="button" onClick={() => setOperationType('BORROW')} className="Borrow-button"  style={{ color: colorBorrow }}>Emprunt {borrow}</button>
+                                <button type="button" onClick={() => setOperationType('LEND')} className="Lend-button" style={{ color: colorLend }} >Prêt {lend}</button>
                             </div>
-                            <div className="choisir-devise">
-                            <label htmlFor="intrestType" className="DateLabel">type d intérêts</label>     
-                                <input 
-                                    type="text"
-                                    value={intrestType}
-                                    onChange={(e) => handleChange("intrestType", e.target.value)}
-                                    className="devise-input"
-                                    required
-                                /> 
+                            <div className="intrestType-choice">
+                            <label htmlFor="intrestType" className="intrestTypeLabel">Type d'intérêts</label>     
+                            <select
+                                id="intrestType"
+                                value={intrestType}
+                                onChange={(e) => handleChange("intrestType", e.target.value)}
+                                className="select-intrestType"
+                                required
+                            >
+                                <option value="PRECOUNT">Précompté</option>
+                                <option value="POSTCOUNT">Postcompté</option>
+                            </select>
                             </div>
-                            <div className="choisir-devise">
-                            <label htmlFor="intrestRate" className="DateLabel">taux d'intérêts</label>     
+                            <div className="intrestRate-choice">
+                            <label htmlFor="intrestRate" className="intrestRateLabel">Taux d'intérêts</label>     
                                 <input 
                                     type="number"
                                     value={intrestRate}
                                     onChange={(e) => handleChange("intrestRate", Number(e.target.value))}
-                                    className="devise-input"
+                                    className="intrestRate-input"
                                     required
                                 /> 
                             </div>
-                            <div className="quantity-selector">
-                            <label htmlFor="amount" className="Amount">Amount</label>
+                            <div className="amount-choice">
+                            <label htmlFor="amount" className="AmountLabel">Montant</label>
                                     <button type="button" className="Button-quant" onClick={() => increment(-10)}>-</button>
                                         <input 
                                         type="number"
@@ -212,18 +221,22 @@ const givedAmount1 = 5;
                                     defaultValue="2025-03-27" 
                                 />
                             </div>
-                            <div className="trade-fees">
-                            <label htmlFor="tradefees" className="TradefeesLabel">Maturity Rate</label>
-                                    <span className="fees-amount">{result.maturityRate}</span>
+                            </div>
+                            <div className="flex-child form-right">
+                            <div className="maturityCalcul-output">
+                            <label htmlFor="maturityRate" className="maturitycalcul-outputLabel">Taux d'intérêts d'échénace  </label>
+                                    <span className="maturityRate-shown">{result?.maturityRate.toFixed(4) ?? '-'}</span>
                             </div> 
-                            <div className="trade-fees">
-                            <label htmlFor="tradefees" className="TradefeesLabel">Maturity dAmount</label>
-                                    <span className="fees-amount">{result.maturityAmount}</span>
+                            <div className="maturityCalcul-output">
+                            <label htmlFor="maturityAmount" className="maturitycalcul-outputLabel">Montant d'échéance </label>
+                                    <span className="maturityAmount-shown">{result?.maturityAmount.toFixed(4) ?? '-'}</span>
                             </div> 
-                            <div className="trade-fees">
-                            <label htmlFor="tradefees" className="TradefeesLabel">GivedAmount</label>
-                                    <span className="fees-amount">{result.givedAmount}</span>
-                            </div> 
+                            <div className="maturityCalcul-output">
+                            <label htmlFor="givedAmount" className="maturitycalcul-outputLabel">Montant {operationType === 'BORROW' ? 'emprunté (reçu)' : operationType === 'LEND' ? 'prêté (donné)' : ''} </label>
+                                    <span className="givenAmount-shown">{result?.givedAmount.toFixed(4) ?? '-'}</span>
+                            </div>
+                            </div>
+                            </div>
 
 
                             {/* <div className="calculated-data">
@@ -232,7 +245,7 @@ const givedAmount1 = 5;
                                 <p>Gived Amount: {givedAmount}</p>
                             </div> */}
 
-                            <button type="submit" className="Button green" >Add Operation</button>
+                            <button type="submit" className="OperationSub-button" >Add Operation</button>
                         </form>
                             <div
                                 style={{ display: "flex", marginTop: 5, justifyContent: "flex-end" }}

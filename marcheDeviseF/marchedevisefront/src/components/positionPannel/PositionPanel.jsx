@@ -2,7 +2,7 @@ import { TabView, TabPanel } from 'primereact/tabview';
 import React, { useState } from "react";
 import "./PositionPanel.css"; // Import CSS file
 import usePanelResizer from "../../hooks/UsePanelResizer";
-import PositionTresoD from '../positionTresoD/positionTresoD';
+import PositionTresoD from '../positionTresoD/PositionTresoD';
 import PositionTresoG from '../positionTresoG/PositionTresoG';
 import Operation from '../operation/Operation';
 

@@ -2,24 +2,27 @@
 import React, { useState, useEffect } from 'react';
 import { fetchForexStream } from '../../../services/devise/StreamDevise';  // Import the service
 import "./DeviseListStream.css";
-import DialogDemo from '../../operation/AddOperation';
+//import DialogDemo from '../../operation/AddOperation';
 import AddOperationComponent from '../../operation/AddOperationTest';
+//import BorrowLendChart from '../deviseStats/devise-linear-charts/RateHLineChart';
 
 
 const columns = [
     { columnId: "label", title: "Devise" },
-    { columnId: "symbol", title: "Symbol" },
-    { columnId: "borrow", title: "Interest rate of Borrow" },
-    { columnId: "lend", title: "Interest rate of Lend" },
+    { columnId: "symbol", title: "Code" },
+    { columnId: "borrow", title: "Taux d'intérêts d'emprunt" },
+    { columnId: "lend", title: "Taux d'intérêts de prêt" },
     { columnId: "intrestaverage", title: "Moyenne des intérêts" },
-    { columnId: "intrestspread", title: "Spread" },
-    { columnId: "lastUpdated", title: "Last Update" }
+    { columnId: "intrestspread", title: "Spread des intérêts" },
+    { columnId: "lastUpdated", title: "Dernière mise à jour" }
   ];
 
 
 const ForexStreamComponent = () => {
   const [deviseData, setDeviseData] = useState([]);  // State to store unique forex data
   const [selectedDevise, setSelectedDevise] = useState(null);  // State to store the selected devise
+  const [selectedDeviseChart, setSelectedDeviseChart] = useState(null);  // State to store the selected devise
+
   const [openDialog, setOpenDialog] = useState(true);  // State to control the dialog visibility
 
 
@@ -39,9 +42,12 @@ const ForexStreamComponent = () => {
   }, []); // The empty dependency array ensures this runs only on mount
 
 
-  
-  const handleRowClick = (deviseId, deviseLabel, deviseSymbol, borrowRate, lendRate) => {
-    setSelectedDevise({ id: deviseId, label: deviseLabel, symbol: deviseSymbol, borrow: borrowRate, lend: lendRate }); 
+  const handleCurrencyClick = (deviseId, deviseLabel, deviseSymbol, borrowRate, lendRate, ColorBorrow, ColorLend) => {
+    setSelectedDeviseChart({ id: deviseId, label: deviseLabel, symbol: deviseSymbol, borrow: borrowRate, lend: lendRate, colorBorrow: ColorBorrow, colorLend: ColorLend }); 
+    console.log("hiiiii");
+  };
+  const handleRowClick = (deviseId, deviseLabel, deviseSymbol, borrowRate, lendRate, ColorBorrow, ColorLend) => {
+    setSelectedDevise({ id: deviseId, label: deviseLabel, symbol: deviseSymbol, borrow: borrowRate, lend: lendRate, colorBorrow: ColorBorrow, colorLend: ColorLend }); 
     setOpenDialog(true)
     };
   const handleDialogClose = () => {
@@ -82,9 +88,13 @@ const ForexStreamComponent = () => {
                         {deviseData.length > 0 ? (
                             deviseData.map((forex, index) => (  
                             <tr key={index} className="bg-gray-100"> 
-                            <td className="p-1 border border-gray-400 text-center text-sm">{forex.label}</td>
+                            
+                            <td className="p-1 border border-gray-400 text-center text-sm" 
+                            onDoubleClick={() => handleRowClick(forex.id, forex.label, forex.ssymbol, forex.sborrow, forex.slend, forex.colorBorrow, forex.colorLend)}
+                            onClick={() => handleCurrencyClick(forex.id, forex.label, forex.ssymbol, forex.sborrow, forex.slend, forex.colorBorrow, forex.colorLend)}
+                            >{forex.label}</td>
                             <td className="p-1 border border-gray-400 text-center text-sm cursor-pointer text-blue-600 underline"
-                            onClick={() => handleRowClick(forex.id, forex.label, forex.ssymbol, forex.sborrow, forex.slend)}
+                            onClick={() => handleRowClick(forex.id, forex.label, forex.ssymbol, forex.sborrow, forex.slend, forex.colorBorrow, forex.colorLend)}
                             >{forex.ssymbol}</td>
                             <td className="p-1 border border-gray-400 text-center text-sm" style={{ color: forex.colorBorrow }}>
                                 {forex.sborrow}
@@ -119,8 +129,6 @@ const ForexStreamComponent = () => {
             </div>
           
         </div>
-
-
 
     </div>  
     

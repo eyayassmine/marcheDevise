@@ -14,6 +14,8 @@ input {
 .addOperation
 {
     background-color: black;
+	z-index: 1000;
+
     
 }
 
@@ -22,30 +24,111 @@ input {
 .DialogOverlay {
 	background-color: rgba(0, 0, 0, 0.85) ;/*var(--black-a9)*/
 	position: fixed;
-	width: 40vw; /* Reduce width */
+	width: 42vw; /* Reduce width */
 	height: 50vh; /* Reduce height */
 	top: 25%; /* Center vertically */
 	left: 30%;
 	right: 30%; /* Center horizontally */
 	border-radius: 10px; /* Optional: Round corners */
 	animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 99;
+    z-index: 1000;
 	display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .DialogForm {
-	width: 90%; /* Ensure the form takes most of the overlay width */
+	width: 95%; /* Ensure the form takes most of the overlay width */
 	height: 90%; /* Ensure the form takes most of the overlay height */
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	overflow: auto; /* Prevent overflow if content exceeds */
-	padding: 20px;
+	padding: 5px;
 	border-radius: 8px;
   }
+
+  
+
+  .flex-container {
+    display: flex;
+	padding: 2px;
+	gap: 5px;
+
+}
+
+
+.flex-child:first-child {
+	flex-basis: 70%; /* Takes more space */
+	/*margin-right: 20px;*/
+  }
+  
+  .flex-child:last-child {
+	flex-basis: 30%; /* Takes less space */
+	gap: 2px;
+	margin-top: 2%;
+  }
+
+   /* .form-content {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 20px;
+	width: 100%;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	flex-wrap: wrap;
+  } */
+	/*
+  
+  .form-middle,
+  .form-right {
+	background-color: #1a1a1a;
+	padding: 15px;
+	border-radius: 8px;
+	flex: 1 1 45%; responsive side-by-side 
+	min-width: 280px;
+	max-width: 48%;
+	box-sizing: border-box;
+  }
+  
+  Stack on smaller screens like your navbar might 
+  @media (max-width: 768px) {
+	.form-content {
+	  flex-direction: column;
+	  align-items: center;
+	}
+  
+	.form-middle,
+	.form-right {
+	  width: 90%;
+	  max-width: 90%;
+	}
+  } */
+
+  /* .form-content {
+	display: flex;
+	gap: 2px;
+	justify-content: center;
+	margin-bottom: 5px;
+	margin-top: 20px;
+	flex-wrap: wrap;
+	padding: 0 5px; 
+  }
+  
+  .form-middle,
+  .form-right {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	min-width: 280px;
+	background-color: #1a1a1a;
+	padding: 5px;
+	border-radius: 8px;
+	flex: 1 1 300px; 
+	max-width: 100%;
+  } */
 
 /*content*/
 .DialogContent {
@@ -56,12 +139,12 @@ input {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 38vw;
-	max-width: 49vw;
-	max-height: 48vh;
-	padding: 15px;
+	width: 40vw;
+	max-width: 50vw;
+	max-height: 50vh;
+	padding: 10px;
 	animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 100;
+    z-index: 1001;
 	display: flex;
     flex-direction: column;
     align-items: center;
@@ -75,18 +158,235 @@ input {
 	margin: 0;
 	font-weight: 500;
 	color: var(--mauve-12);
-	font-size: 17px;
+	font-size: 18px;
     color:#d2AC47;
 }
 /*description*/
 .DialogDescription {
 	margin: 5px 0 5px;
 	color: var(--mauve-11);
-	font-size: 15px;
+	font-size: 16px;
 	line-height: 1.5;
     color:beige;
 }
 
+
+
+/* .TradefeesLabel {
+    font-size: 15px;
+    color:#ddc276; 
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-right: 5px;
+  } */
+
+
+
+.OperationSub-button
+{
+	background-color: (0, 0, 0, 0.85); /* Soft blue color */
+	
+	padding: 8px 12px;
+	border: 1px solid;
+	border-color: #cfb05b; /* Soft blue color */
+	margin: 2px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 16px; 
+	transition: background 0.3s;
+	color:#d2AC47;
+	margin-top: 10px;
+}
+/*********Operation buttons**********/
+.operation-buttons
+{
+	display: flex;            /* Enable Flexbox */
+	justify-content: flex-start; /* Align buttons to the left */
+	gap: 5px;
+	margin: 10px;
+}
+/*#1B262E*/
+.Borrow-button, .Lend-button {
+	background-color: (0, 0, 0, 0.85); /* Soft blue color */
+	padding: 8px 12px;
+	border: 1px solid;
+	border-color: #cfb05b; /* Soft blue color */
+	margin: 2px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 16px; 
+	transition: background 0.3s;
+}
+ .Borrow-button
+{
+	color:#d2AC47;
+}
+.Lend-button
+{
+	color: #d2AC47;/*#d247c0*/
+} 
+/*******intrestTypechoice************/
+
+.intrestRate-choice, .intrestType-choice, .amount-choice
+  {
+	width: 80%;
+    display: flex;
+    flex-direction: row;
+	align-items: baseline;
+    gap: 8px;
+    margin: 5px;
+	justify-content: flex-start;
+  }
+
+.intrestTypeLabel, .intrestRateLabel, .AmountLabel, .DateLabel
+{
+	white-space: nowrap;
+	font-size: 15px;
+    color: white;
+    font-weight:500;
+    margin-bottom: 5px;
+}
+.AmountLabel
+{
+	margin-right: 20px;
+} 
+  .select-intrestType {
+	background-color:  rgba(0, 0, 0, 0.85); /* Light grey background */
+	color: #d2AC47; /* Dark text */
+	border: 1px solid;
+	border-color: #cfb05b; 
+	padding: 8px 12px;
+	border-radius: 6px;
+	font-weight: 600;
+	font-size: 16px;
+	appearance: none; /* Removes default arrow styling on some browsers */
+	cursor: pointer;
+	transition: 0.3s ease;
+	margin-left: 4px;
+  }
+  
+  .select-intrestType :hover {
+	background-color: #d2AC47;;
+  }
+  
+  .select-intrestType :focus {
+	outline: none;
+	border-color: #007BFF; /* Bootstrap blue for focus */
+	background-color: #d2AC47; /* Optional: white when focused */
+  }
+
+  .intrestRate-input,  .quantity-input { /*devise-input*/
+    color: white;        /* Change text color to white */
+    border: 1px solid #cfb05b; /* Optional: Change border color to white for visibility */
+    padding: 7px;       /* Optional: Add some padding for better spacing */
+    border-radius: 6px; /* Optional: Optional rounded corners */
+	margin: 2px;
+}
+.intrestRate-input
+{
+	margin-left: 4px;
+}
+.quantity-input
+{
+	margin-left: 4px;
+}
+
+  .Button-quant {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 4px;
+	padding: 0 5px;
+    color:white;
+	font-size: 15px;
+	line-height: 1;
+	font-weight: 500;
+	height: 35px;
+	user-select: none;
+}
+
+/**************date**********/
+.Date-Echeance {
+	width: 80%;
+    display: flex;
+    flex-direction: row;
+	align-items: baseline;
+    gap: 8px;
+    margin: 5px;
+	justify-content: flex-start; /* Align items to the left */
+
+  }
+
+.DateInput {
+    width: 50%;
+	padding: 8px 12px;
+	border-radius: 6px;
+	font-weight: 600;
+	font-size: 16px;
+    border: 1px  #cfb05b; /* Light border */
+    color: #d2AC47;
+    background-color: rgba(0, 0, 0, 0.85); /* Light background */
+    box-shadow: 0 0 0 1px #cfb05b;
+    transition: all 0.3s ease;
+  }
+  
+  .DateInput:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #f0d588 ;/*var(--violet-8)*/
+    /*box-shadow: 0 0 0 2px var(--violet-8);*/ /* Highlight on focus */
+    border-color:#cfb05b; /*var(--violet-8)*/
+  }
+  
+  .DateInput::-webkit-calendar-picker-indicator {
+    background-color: #d2AC47; /* Change calendar picker icon color */
+    border-radius: 50%;
+    padding: 5px;
+  }
+
+  
+/*inputs*/
+.Input {
+	width: 20%;
+	flex: 1;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 5px 5px;
+	border-radius: 6px;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 1;
+    color: #d2AC47;
+	box-shadow: 0 0 0 1px #cfb05b;
+	/* color: var(--violet-11);
+	box-shadow: 0 0 0 1px var(--violet-7); */
+	height: auto;
+}
+.Input:focus {
+	box-shadow: 0 0 0 2px #cfb05b; /*var(--violet-8)*/
+}
+
+.Label
+{
+	color: white;        /* Change text color to white */
+
+}
+
+/*******maturityCalculation******/
+.maturitycalcul-outputLabel {
+    font-size: 16px;
+    color:#ddc276; /* Customize color */
+	font-weight: 400;
+    margin-bottom: 5px;
+    margin-right: 5px;
+	line-height: 1.5;
+  }
+
+
+
+/***************************************************************/
 /*buttons*/
 .Button {
 	display: inline-flex;
@@ -101,19 +401,7 @@ input {
 	user-select: none;
 }
 
-.Button-quant {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 4px;
-	padding: 0 15px;
-    color:white;
-	font-size: 15px;
-	line-height: 1;
-	font-weight: 500;
-	height: 35px;
-	user-select: none;
-}
+
 .Button:focus:not(:focus-visible) {
 	outline: 0;
 }
@@ -161,34 +449,6 @@ input {
 	box-shadow: 0 0 0 2px var(--violet-7);
 }
 
-.Borrow-button, .Lend-button {
-    background-color: #1B262E; /* Soft blue color */
-    /*color: #1B262E;*/
-    padding: 8px 12px;
-    border: 1px solid;
-    border-color: #cfb05b; /* Soft blue color */
-    margin: 2px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px; 
-    transition: background 0.3s;
-    }
-    .Borrow-button
-    {
-        color:#d2AC47;
-    }
-    .Lend-button
-    {
-        color:#d247c0;
-    }
-    .operation-buttons
-    {
-        display: flex;            /* Enable Flexbox */
-        justify-content: center; /* Align buttons to the left */
-        gap: 5px; 
-        }
-
 /*fildsets and labels*/
 
 .Fieldset {
@@ -219,8 +479,7 @@ input {
     align-items: center;
     justify-content: space-between;
 }
-.quantity-display, .trade-fees
-
+.quantity-display, .maturityCalcul-output /*.trade-fees*/
 {
     font-size: 15px;
     color: white; /* Customize color */
@@ -242,98 +501,8 @@ input {
 	text-align: right; 
 }
 
-.TradefeesLabel {
-    font-size: 15px;
-    color:#ddc276; /* Customize color */
-    font-weight: bold;
-    margin-bottom: 5px;
-    margin-right: 5px;
-  }
-/*date*/
-.Date-Echeance {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    margin-bottom: 20px;
-	justify-content: flex-start; /* Align items to the left */
 
-  }
-  
-  .DateLabel {
-
-    font-size: 15px;
-    color: white; /* Customize color */
-    font-weight:500;
-    margin-bottom: 5px;
-
-  }
-  .Amount {
-    font-size: 15px;
-    color: white; /* Customize color */
-    font-weight:500;
-    margin-bottom: 5px;
-  }
-  
-  .DateInput {
-    width: 100%;
-    padding: 10px;
-    font-size: 15px;
-    border-radius: 4px;
-    border: 1px solid #cfb05b; /* Light border */
-    color: #d2AC47;
-    background-color: var(--gray-2); /* Light background */
-    box-shadow: 0 0 0 1px #cfb05b;
-    transition: all 0.3s ease;
-  }
-  
-  .DateInput:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px #f0d588 ;/*var(--violet-8)*/
-    /*box-shadow: 0 0 0 2px var(--violet-8);*/ /* Highlight on focus */
-    border-color:#cfb05b; /*var(--violet-8)*/
-  }
-  
-  .DateInput::-webkit-calendar-picker-indicator {
-    background-color: #d2AC47; /* Change calendar picker icon color */
-    border-radius: 50%;
-    padding: 5px;
-  }
-
-  
-/*inputs*/
-.Input {
-	width: 100%;
-	flex: 1;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 4px;
-	padding: 0 10px;
-	font-size: 15px;
-	line-height: 1;
-    color: #d2AC47;
-	box-shadow: 0 0 0 1px #cfb05b;
-	/* color: var(--violet-11);
-	box-shadow: 0 0 0 1px var(--violet-7); */
-	height: 35px;
-}
-.Input:focus {
-	box-shadow: 0 0 0 2px #cfb05b; /*var(--violet-8)*/
-}
-
-.quantity-input, .devise-input {
-    color: white;        /* Change text color to white */
-    border: 1px solid #cfb05b; /* Optional: Change border color to white for visibility */
-    padding: 5px;       /* Optional: Add some padding for better spacing */
-    border-radius: 4px; /* Optional: Optional rounded corners */
-	margin: 2px;
-}
-
-.Label
-{
-	color: white;        /* Change text color to white */
-
-}
+/*****************************************************************************/
 
 
 @keyframes overlayShow {
